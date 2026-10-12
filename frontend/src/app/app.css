@@ -9,7 +9,13 @@
     min-height: 100dvh;
 }
 
+header {
+  grid-area: header;
+}
 main{
     grid-area: main;
     background-color: black;
+}
+footer {
+  grid-area: footer;
 }
