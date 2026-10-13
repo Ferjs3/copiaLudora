@@ -1,0 +1,24 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif; 
+    /* Fuente para todo, elegí Arial por comodidad 
+    visual de fercho (? pero apta a cambio */
+}
+:root{
+    --color-principal: #28a050;       /* Verde */
+    --color-base: #101414;            /* Fondo general negro */
+    --color-secundario: #2D2D2D;      /* Superficies */
+    --color-texto: #FCFCFC;           /* Texto principal*/
+    --color-texto-muted: #5a5f5c;     /* Detalles y textos secundarios*/
+
+    /*
+    Colores modo claro
+    --color-principal: #28a050;    //Mismo verde
+    --color-base: #fcfcfc;         //Fondo general blanco
+    --color-superficie: #ffffff;   //Superficies
+    --color-texto: #101414;        //Texto principal
+    --color-texto-muted: #5a5f5c;  //Detalles y textos secundarios
+    */
+}
