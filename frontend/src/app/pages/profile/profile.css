@@ -1,0 +1,14 @@
+:host{
+    display: flex;
+    padding: 16px;
+}
+
+
+#img-profile{
+    border-radius: 50%;
+    height: 256px;
+}
+
+.profile{
+    background-color: var(--color-secundario);
+}
