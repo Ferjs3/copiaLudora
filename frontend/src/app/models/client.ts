@@ -8,6 +8,6 @@ export interface Client {
     phone : number
     street : string
     numberStreet : number
-    birthDate : Date
+    birthDate : string
     points : number
 }
