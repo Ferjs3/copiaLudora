@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { Client } from '../models/client';
+import { ClientRequest } from '../models/client-request';
 
 @Service()
 export class UserService {
@@ -14,5 +15,9 @@ export class UserService {
 
     getMyUser(){
         return this.http.get<Client>(this.url)
+    }
+
+    addUser(clientRequest : ClientRequest){
+        return this.http.post<ClientRequest>(this.url,clientRequest)
     }
 }

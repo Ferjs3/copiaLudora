@@ -7,12 +7,14 @@
 }
 
 form{
+    width: 400px;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 30px;
-    gap: 2px;
+    gap: 3px;
     border-radius: 30px;
+    border: 2px solid var(--color-principal);
 
 
 }
@@ -20,17 +22,28 @@ fieldset{
     display: flex;
     flex-direction: column;
     border: none;
+    position: relative;
+    padding-bottom: 32px;
 }
 label{
     color : var(--color-principal);
 }
 p{
-    color: var(--color-principal);
+    
+    color: red;
+    position: absolute;
+    bottom: 4px;
+    font-size: 0.7rem;
+
 }
 
-button{
-    background-color: var(--color-principal);
-    border-radius: 80%;
-    padding: 8px 0px;
-    margin: 10px 40px;
+.direccion{
+    color: var(--color-principal);
+    margin-top: 5px;
+    
 }
+
+
+ .btn{
+    margin-left: 100px;
+ }

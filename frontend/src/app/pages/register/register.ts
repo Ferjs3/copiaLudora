@@ -37,6 +37,15 @@ export class Register implements OnInit {
 
     const clientData = this.clientForm.value;
 
+    this.userService.addUser(clientData).subscribe({
+      next: (data)=> {
+        console.log('usuario cargado con exito',data);
+        this.router.navigate(['/login']);},
+         error: (err) => {
+        console.error('Error al registrar el usuario', err);
+      }
+      })
+
 }
 
 }
