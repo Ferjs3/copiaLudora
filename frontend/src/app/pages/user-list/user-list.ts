@@ -64,7 +64,6 @@ export class UserList implements OnInit {
         : c)
     )
 
-    // Cuando tengas backend:
     // if (!client.externalId) return
     // this.userService.setBlocked(client.externalId, blocked).subscribe({
     //   next: () => this.clients.update(list =>
@@ -74,5 +73,7 @@ export class UserList implements OnInit {
     //   ),
     //   error: e => console.error(e)
     // })
+
+    //(CAMBIAR CUANDO CONECTEMOS  CON BACK)
   }
 }
