@@ -1,9 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Client } from '../../models/client';
 import { UserService } from '../../services/user-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-profile',
   styleUrl: './profile.css',
   templateUrl: './profile.html',
@@ -17,11 +18,11 @@ export class Profile implements OnInit{
     userName : 'maxiSuuu',
     email : 'maxisuarez@email.com',
     statusBlocked : true,
-    phone : 0,
+    phone : 2235658440,
     street : 'Av algo',
-    numberStreet : 0,
-    birthDate : new Date(),
-    points : 0,
+    numberStreet : 123,
+    birthDate : '22-08-1994',
+    points : 350,
   })
 
   clientService = inject(UserService)

@@ -1,5 +1,19 @@
-<img src="images/profile-base.jpeg" alt="imagen de perfil" id="img-profile">
 
-<section class="profile">
-    
-</section>
+@if(client(); as client){
+
+    <section id="profile">
+        <img src="images/profile-base.jpeg" alt="imagen de perfil" id="img-profile">
+
+        <div id="dates">
+            <h3>Usuario: {{client.userName}}</h3>
+            <p><strong>Nombre:</strong> {{client.name}} {{client.lastName}}</p>
+            <p><strong>Email:</strong> {{client.email}}</p>
+            <p><strong>Estado:</strong> {{client.statusBlocked? 'Activo' : 'Bloqueado'}}</p>
+            <p><strong>Teléfono:</strong> {{client.phone}}</p>
+            <p><strong>Dirección:</strong> {{client.street}} {{client.numberStreet}}</p>
+            <p><strong>Fecha Nacimiento:</strong> {{client.birthDate}}</p>
+            <p><strong>Puntos Acumulados:</strong> {{client.points}}</p>
+            <button type="button" class="btn" routerLink="/EDIT">Editar</button>
+        </div>
+    </section>    
+}
