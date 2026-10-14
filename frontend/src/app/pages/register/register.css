@@ -1,0 +1,49 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+}
+
+form{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 30px;
+    gap: 3px;
+    border-radius: 30px;
+    border: 2px solid var(--color-principal);
+
+
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    position: relative;
+    padding-bottom: 32px;
+}
+label{
+    color : var(--color-principal);
+}
+p{
+    
+    color: red;
+    position: absolute;
+    bottom: 4px;
+    font-size: 0.7rem;
+
+}
+
+.direccion{
+    color: var(--color-principal);
+    margin-top: 5px;
+    
+}
+
+
+ .btn{
+    margin-left: 100px;
+ }
