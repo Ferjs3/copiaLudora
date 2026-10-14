@@ -16,7 +16,7 @@
       <p><strong>Puntos Acumulados:</strong> {{client.points}}</p>
 
       <div class="actions">
-        <a class="btn" [routerLink]="['/users', client.externalId, 'edit']">Editar</a>
+        <button class="btn" [routerLink]="['/users', client.externalId, 'edit']">Editar</button>
 
         @if (client.statusBlocked) {
           <button type="button" class="btn" (click)="setBlocked(client, false)">Bloquear</button>
