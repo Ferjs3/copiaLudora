@@ -1,1 +1,31 @@
-<p>catalog works!</p>
+<div class="container">
+  <h2>Catálogo de Videojuegos</h2>
+
+  @if (isLoading()) {
+    <p>Cargando juegos...</p>
+  } @else {
+    <div class="games-grid">
+      @for (game of games(); track game.externalId) {
+        <div class="game-card">
+          
+            <div class="game-image-container">
+                <img [src]="game.imageUrl" [alt]="game.name" class="game-cover" />
+            </div>
+
+            <div class="game-info">
+                <h3>{{ game.name }}</h3>
+                <p class="price">${{ game.price }}</p>
+                <p class="age">Edad: {{ game.ageRange }}</p>
+                <div class="genres">
+                @for (genre of game.genres; track genre) {
+                    <span class="badge">{{ genre }}</span>
+                }
+                </div>
+            </div>
+        </div>
+    } @empty {
+        <p>No hay videojuegos disponibles en este momento.</p>
+    }
+    </div>
+  }
+</div>
