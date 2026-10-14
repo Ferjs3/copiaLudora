@@ -42,3 +42,8 @@
         font-size: 1.8rem;
     }
 }
+
+.btn{
+    align-self: center;
+    margin-top: 1rem;
+}
