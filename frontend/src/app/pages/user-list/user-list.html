@@ -9,7 +9,7 @@
       <h3>Usuario: {{client.userName}}</h3>
       <p><strong>Nombre:</strong> {{client.name}} {{client.lastName}}</p>
       <p><strong>Email:</strong> {{client.email}}</p>
-      <p><strong>Estado:</strong> {{client.statusBlocked ? 'Bloqueado' : 'Activo'}}</p>
+      <p><strong>Estado:</strong> {{client.statusBlocked ? 'Activo' : 'Bloqueado'}}</p>
       <p><strong>Teléfono:</strong> {{client.phone}}</p>
       <p><strong>Dirección:</strong> {{client.street}} {{client.numberStreet}}</p>
       <p><strong>Fecha Nacimiento:</strong> {{client.birthDate}}</p>
@@ -19,9 +19,9 @@
         <a class="btn" [routerLink]="['/users', client.externalId, 'edit']">Editar</a>
 
         @if (client.statusBlocked) {
-          <button type="button" class="btn" (click)="setBlocked(client, false)">Desbloquear</button>
+          <button type="button" class="btn" (click)="setBlocked(client, false)">Bloquear</button>
         } @else {
-          <button type="button" class="btn" (click)="setBlocked(client, true)">Bloquear</button>
+          <button type="button" class="btn" (click)="setBlocked(client, true)">Desbloquear</button>
         }
       </div>
     </div>
