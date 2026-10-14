@@ -1,0 +1,59 @@
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+#img-profile{
+    border-radius: 50%;
+    height: 15rem;
+}
+
+#profile{
+    background-color: var(--color-secundario);
+    padding: 16px;
+    color: var(--color-texto);
+    display: flex;
+    border-radius: 16px;
+    gap: 2rem;
+    width: 60%;
+    justify-content: space-around;
+    height: 85%;
+    align-items: center;
+    border: 1px solid var(--color-principal);
+    flex-wrap: wrap;
+    margin: 2rem;
+}
+
+#dates{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+    margin: 5rem;
+    flex-wrap: wrap;
+
+
+    p{
+        margin-left: 16px;
+    }
+
+    h3{
+        font-size: 1.8rem;
+    }
+}
+
+.btn{
+    align-self: center;
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+    
+    #profile{
+        flex-direction: column;
+    }
+}
