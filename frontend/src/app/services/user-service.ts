@@ -9,7 +9,7 @@ export class UserService {
     http = inject(HttpClient)
 
     getAllUsers(){
-
+        return this.http.get<Client[]>(this.url)
     }
 
     getMyUser(){
