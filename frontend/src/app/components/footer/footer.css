@@ -45,3 +45,57 @@
     background-color: color-mix(in srgb, var(--color-principal) 8%, transparent);
     transform: scale(1.2);
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 16px;
+    box-sizing: border-box;
+  }
+
+  .seccion {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .p3 {
+    order: 1;
+  }
+
+  .icono {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .p1 {
+    order: 2;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .red {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    text-decoration: none;
+  }
+
+  .p2 {
+    order: 3;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .p2 p {
+    margin: 0;
+    text-align: center;
+  }
+}
