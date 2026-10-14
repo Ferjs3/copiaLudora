@@ -1,0 +1,59 @@
+{
+  "games": [
+    {
+      "externalId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Cyber Odyssey 2088",
+      "price": 29999.99,
+      "developer": "Neon Pixel Studios",
+      "description": "Un RPG de acción en mundo abierto ambientado en una metrópolis cyberpunk distópica.",
+      "releaseDate": "2025-11-15",
+      "ageRange": "+18",
+      "genres": ["RPG", "Cyberpunk", "Acción"],
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"
+    },
+    {
+      "externalId": "b2c3d4e5-f6a1-8901-bcde-f12345678901",
+      "name": "Pixel Farmer Simulator",
+      "price": 12500.00,
+      "developer": "Cozy Leaf Games",
+      "description": "Cultiva tu granja, cría animales y haz amigos en este relajante simulador de vida rural.",
+      "releaseDate": "2024-05-20",
+      "ageRange": "ATP",
+      "genres": ["Simulación", "Casual", "Indie"],
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"
+    },
+    {
+      "externalId": "c3d4e5f6-a1b2-9012-cdef-123456789012",
+      "name": "Shadow Tactics: Blade of Honor",
+      "price": 45000.50,
+      "developer": "Karasu Interactive",
+      "description": "Juego de estrategia táctica y sigilo ambientado en el Japón feudal.",
+      "releaseDate": "2026-02-10",
+      "ageRange": "+16",
+      "genres": ["Estrategia", "Sigilo", "Acción"],
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"
+    },
+    {
+      "externalId": "d4e5f6a1-b2c3-0123-defa-234567890123",
+      "name": "Galaxy Racers Arcade",
+      "price": 8900.00,
+      "developer": "HyperDrive Entertainment",
+      "description": "Carreras espaciales frenéticas con naves personalizables y multijugador local.",
+      "releaseDate": "2023-09-05",
+      "ageRange": "ATP",
+      "genres": ["Carreras", "Arcade", "Multijugador"],
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"
+    },
+    {
+      "externalId": "e5f6a1b2-c3d4-1234-efab-345678901234",
+      "name": "The Haunted Manor",
+      "price": 18200.00,
+      "developer": "Midnight Crypt",
+      "description": "Aventura gráfica de terror psicológico con acertijos y múltiples finales.",
+      "releaseDate": "2025-10-31",
+      "ageRange": "+18",
+      "genres": ["Terror", "Aventura", "Puzzle"],
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"
+    }
+  ]
+}
