@@ -14,7 +14,7 @@ header {
 }
 main{
     grid-area: main;
-    background-color: black;
+    background-color: var(--color-secundario);;
 }
 footer {
   grid-area: footer;

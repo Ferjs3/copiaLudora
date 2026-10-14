@@ -1,1 +1,48 @@
-<p>home works!</p>
+<div class="container" (mouseenter)="stopAutoPlay()" (mouseleave)="startAutoPlay()">
+  <div class="carrusel" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+    @for (game of games; track game.externalId) {
+      <div class="slide">
+        <div class="imagen">
+          <img [src]="game.imageUrl" [alt]="game.name">
+        </div>
+        <div class="info">
+          <!-- clasificación de edad -->
+          
+
+          <!-- titulo y detalles de developer y fecha -->
+          <h2 class="titulo">{{ game.name }}</h2>
+          <div class="top">
+            <span class="rangoedad">{{ game.agerange }}</span>
+          </div>
+          <span class="dev-fecha">
+            <strong>{{ game.developer }}</strong> - Lanzamiento: {{ game.releaseDate | date:'mediumDate' }}
+          </span>
+
+          <p class="descripcion">{{ game.description }}</p>
+
+          <!-- precio -->
+          <div class="slideBajo">
+            <div class="containerPrecio">
+              <span class="precio">${{game.price}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- botones de navegacion -->
+  <button class="boton prev" (click)="prev()" aria-label="Anterior">&#10094;</button>
+  <button class="boton next" (click)="next()" aria-label="Siguiente">&#10095;</button>
+
+  <!-- puntos navegacion -->
+  <div class="dots">
+    @for (game of games; track game.externalId; let i = $index) {
+      <button 
+        class="dot" 
+        [class.active]="i === currentIndex" 
+        (click)="goTo(i)">
+      </button>
+    }
+  </div>
+</div>
