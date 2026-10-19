@@ -114,32 +114,11 @@ p {
 }
 
 
-.btn-cart {
+.btn {
     width: 100%;
-    margin-top: 1.25rem;
-    background-color: var(--color-principal);
-    color: var(--color-base);
-    border: none;
-    border-radius: 8px;
-    padding: 0.65rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem; 
-    letter-spacing: 0.3px;
-    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 
-.btn-cart:hover {
-    background-color: color-mix(in srgb, var(--color-principal) 85%, white);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(40, 160, 80, 0.3);
-}
-
-.btn-cart:active {
+.btn:active {
     transform: translateY(0);
 }
 

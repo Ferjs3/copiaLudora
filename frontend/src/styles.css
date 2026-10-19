@@ -25,20 +25,25 @@
 
 
 .btn{
-    background-color: transparent;
-    border: 1px solid var(--color-principal);
-    color: var(--color-texto);
-    padding: 6px 12px;
-    width:max-content;
-    border-radius: 6px;
-    font-size: 1.2em;
+    margin-top: 1.25rem;
+    background-color: var(--color-principal);
+    color: var(--color-base);
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; 
+    letter-spacing: 0.3px;
+    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 
 .btn:hover, .btn:focus-visible{
-    color: var(--color-principal);
-    background-color: color-mix(in srgb, var(--color-principal) 8%, transparent);
-    box-shadow: inherit 0 -3px 0 var(--color-principal);
-    outline: 1px solid var(--color-principal);
+    background-color: color-mix(in srgb, var(--color-principal) 85%, white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 160, 80, 0.3);
 }
