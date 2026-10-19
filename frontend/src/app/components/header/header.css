@@ -61,17 +61,10 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-.logo {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  text-decoration: none;
-  font-size: 2rem;
-  color: var(--color-principal);
-  letter-spacing: 1.5px;
-  transition: text-shadow 0.25s ease;
-}
-
-.logo:hover {
-  text-shadow: 0 0 12px rgba(40, 160, 80, 0.6);
+img{
+  width: 150px;
+  display: flex;
+  justify-content: center;
 }
 
 .item {
