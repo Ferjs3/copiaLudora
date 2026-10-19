@@ -8,5 +8,4 @@ export interface ClientRequest {
     street : string
     numberStreet : number
     birthDate : Date
-
 }
