@@ -21,6 +21,15 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
 
+    p{
+        color: var(--color-texto);
+
+        a{
+            text-decoration: none;
+            color: #ff6b6b;
+        }
+    }
+
     form{
         width: 100%;
 

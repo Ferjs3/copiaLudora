@@ -12,6 +12,8 @@
                 <p class="msj-error">* Ingrese su usuario y contraseña</p>
         }
         </div>
-        <button type="button" class="btn" [disabled]="form.invalid">Acceder</button>
+        <button type="button" class="btn" [disabled]="form.invalid" (click)="onSubmit()">Acceder</button>
+        
     </form>
+        <p>¿No tienes cuenta? <a routerLink="/register">Registrate</a></p>
 </div>
