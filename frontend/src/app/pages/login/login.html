@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="card">
+    <h2>LudoraLogo</h2>
+
+    <form [formGroup]="form">
+
+        <div class="dates">
+        <input type="text" id="username" placeholder="Nombre de usuario" formControlName="username">
+        <input type="password" id="password" placeholder="Contraseña" formControlName="password">
+        
+        @if (form.get('username')?.hasError('required') && form.get('username')?.touched 
+            || form.get('password')?.hasError('required') && form.get('password')?.touched) {
+                <p class="msj-error">* Ingrese su usuario y contraseña</p>
+        }
+        </div>
+        <button type="button" class="btn" [disabled]="form.invalid">Acceder</button>
+    </form>
+</div>
