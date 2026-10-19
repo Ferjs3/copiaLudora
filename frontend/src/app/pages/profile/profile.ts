@@ -15,7 +15,7 @@ export class Profile implements OnInit{
     externalId : '1',
     name : 'Maximiliano',
     lastName : 'Suarez',
-    userName : 'maxiSuuu',
+    userName : 'maxiSiuuu',
     email : 'maxisuarez@email.com',
     statusBlocked : true,
     phone : 2235658440,
