@@ -11,10 +11,16 @@
 
 header {
   grid-area: header;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  align-self: start;
+  
+  grid-area: header;
 }
 main{
     grid-area: main;
-    background-color: var(--color-secundario);;
+    background-color: var(--color-secundario);
 }
 footer {
   grid-area: footer;

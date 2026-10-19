@@ -13,5 +13,5 @@ export const routes: Routes = [
     {path: 'user-list', component: UserList},
     {path: 'profile', component: Profile},
     {path: 'catalog', component: Catalog},
-    {path: '', redirectTo: '/login', pathMatch: 'full'}
+    {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
