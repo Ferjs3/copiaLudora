@@ -1,4 +1,17 @@
 <div class="container" (mouseenter)="stopAutoPlay()" (mouseleave)="startAutoPlay()">
+
+  <section class="seccionBuscador">
+    <div class="buscador">
+      <div class="lupa">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </div>
+      <input type="text" aria-label="buscador" placeholder="Buscar en la tienda" class="inputBuscador">
+    </div>
+  </section>
+
+  <section class="seccionCarrusel">
   <div class="carrusel" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
     @for (game of games; track game.externalId) {
       <div class="slide">
@@ -6,24 +19,19 @@
           <img [src]="game.imageUrl" [alt]="game.name">
         </div>
         <div class="info">
-          <!-- clasificación de edad -->
-          
-
-          <!-- titulo y detalles de developer y fecha -->
           <h2 class="titulo">{{ game.name }}</h2>
           <div class="top">
             <span class="rangoedad">{{ game.agerange }}</span>
           </div>
           <span class="dev-fecha">
-            <strong>{{ game.developer }}</strong> - Lanzamiento: {{ game.releaseDate | date:'mediumDate' }}
+            <strong>{{ game.developer }}</strong> Lanzamiento: {{ game.releaseDate | date:'mediumDate' }}
           </span>
 
           <p class="descripcion">{{ game.description }}</p>
 
-          <!-- precio -->
           <div class="slideBajo">
             <div class="containerPrecio">
-              <span class="precio">${{game.price}}</span>
+              <span class="precio">${{ game.price }}</span>
             </div>
           </div>
         </div>
@@ -31,7 +39,7 @@
     }
   </div>
 
-  <!-- botones de navegacion -->
+  <!-- botones de navegacion del carrusel -->
   <button class="boton prev" (click)="prev()" aria-label="Anterior">&#10094;</button>
   <button class="boton next" (click)="next()" aria-label="Siguiente">&#10095;</button>
 
@@ -45,4 +53,31 @@
       </button>
     }
   </div>
+</section> 
+<!-- Fin seccion carrusel -->
+
+
+<!-- barra de categorias de navegacion -->
+<section class="seccionBarraOpciones">
+  <div class="chips-track">
+    
+    <div class="chips-group">
+      @for (chip of chips; track chip.id) {
+        <button type="button" class="chip" [routerLink]="['/catalog']"
+          [queryParams]="chip.id === 'all' ? null : { category: chip.queryParam }">
+          {{ chip.label }}
+        </button>
+      }
+    </div>
+
+    <div class="chips-group" aria-hidden="true">
+      @for (chip of chips; track 'dup-' + chip.id) {
+        <button type="button" class="chip" [routerLink]="['/catalog']"
+          [queryParams]="chip.id === 'all' ? null : { category: chip.queryParam }">
+          {{ chip.label }}
+        </button>
+      }
+    </div>
+  </div>
+</section>
 </div>

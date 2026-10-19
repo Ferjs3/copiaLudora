@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { DatePipe, CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 export interface Game {
   externalId: string;
@@ -13,19 +14,45 @@ export interface Game {
   imageUrl: string;
 }
 
+export interface FilterChip {
+  id: string;
+  label: string;
+  queryParam: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DatePipe, CurrencyPipe],
+  imports: [DatePipe, CurrencyPipe, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements OnInit, OnDestroy {
+  @ViewChild('chipsScroll', { static: false }) chipsScroll!: ElementRef<HTMLDivElement>;
+
   currentIndex: number = 0;
   private autoPlayTimer: any;
   readonly intervalMs: number = 4500;
 
-games: Game[] = [
+  /* --- Chips de Navegación --- */
+  activeChipId: string = 'all';
+
+  chips: FilterChip[] = [
+    { id: 'all', label: 'Todos', queryParam: 'all' },
+    { id: 'offers', label: '🔥 En Oferta', queryParam: 'offers' },
+    { id: 'pc', label: 'PC Windows', queryParam: 'pc' },
+    { id: 'ps5', label: 'PlayStation 5', queryParam: 'ps5' },
+    { id: 'xbox', label: 'Xbox Series X/S', queryParam: 'xbox' },
+    { id: 'switch', label: 'Nintendo Switch', queryParam: 'switch' },
+    { id: 'rpg', label: 'RPG', queryParam: 'rpg' },
+    { id: 'action', label: 'Acción', queryParam: 'action' },
+    { id: 'indie', label: 'Indie', queryParam: 'indie' },
+    { id: 'f2p', label: 'Gratis', queryParam: 'f2p' },
+    { id: 'multiplayer', label: 'Cooperativo', queryParam: 'multiplayer' },
+    { id: 'strategy', label: 'Estrategia', queryParam: 'strategy' }
+  ];
+
+  games: Game[] = [
     {
       externalId: 'ext-gow-ragnarok',
       name: 'God of War Ragnarök',
@@ -93,7 +120,6 @@ games: Game[] = [
     }
   }
 
-  /* metodos para botones de navegacion */
   next(): void {
     this.currentIndex = (this.currentIndex + 1) % this.games.length;
     this.resetTimer();
@@ -109,10 +135,9 @@ games: Game[] = [
     this.resetTimer();
   }
 
-  /* reseteo del temporizador */
-
   private resetTimer(): void {
     this.stopAutoPlay();
     this.startAutoPlay();
   }
+
 }
