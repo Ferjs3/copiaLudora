@@ -1,6 +1,6 @@
 <h2>Únete a Ludora</h2>
 
-<form [formGroup]="clientForm" (ngSubmit)="ngOnInit()">
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
     <fieldset>
         <label for="name">Nombre:</label>
@@ -53,7 +53,7 @@
     <fieldset>
         <label for="password2">Confirmar Contraseña:</label>
         <input type="password" name="password2" id="password2" placeholder="Introducir devuelta su contraseña" formControlName="password2T">
-         @if(clientForm.get('password2T')?.hasError('required') && clientForm.get('passwordT2')?.touched){
+         @if(clientForm.get('password2T')?.hasError('required') && clientForm.get('password2T')?.touched){
             <p>*El password es obligatorio</p>
         }@else if (clientForm.get('passwordT')?.value !== clientForm.get('password2T')?.value) {
             <p>*Las password tienen que ser iguales</p>
@@ -65,6 +65,8 @@
         <input type="tel" name="phone" id="phone" placeholder="+34 612 34 56 78" formControlName="phoneT" >
         @if(clientForm.get('phoneT')?.hasError('required') && clientForm.get('phoneT')?.touched){
             <p>*El telefono es obligatorio</p>
+        }@else if (clientForm.get('phoneT')?.hasError('min') && clientForm.get('phoneT')?.touched || clientForm.get('phoneT')?.hasError('max') && clientForm.get('phoneT')?.touched) {
+            <p>*El numero de telefono debe tener entre 7 y 11 digitos</p>
         }
     </fieldset>
 
@@ -95,11 +97,11 @@
 
     <fieldset>
         <label for="birthdate">Fecha de nacimiento:</label>
-        <input type="date" name="birthdate" id="birthdate" formControlName="birthdateT">
-        @if (clientForm.get('birthdateT')?.hasError('required') && clientForm.get('birthdateT')?.touched) {
+        <input type="date" name="birthdate" id="birthdate" formControlName="birthDateT">
+        @if (clientForm.get('birthDateT')?.hasError('required') && clientForm.get('birthDateT')?.touched) {
             <p>*Este campo es obligatorio</p>
         }
     </fieldset>
 
-    <button class="btn" type="submit">Registrarse</button>
+    <button class="btn" type="submit" [disabled]="clientForm.invalid">Registrarse</button>
 </form>
