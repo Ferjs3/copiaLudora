@@ -5,12 +5,24 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.column{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-base);
 }
 
 .seccionBuscador{
   margin: 1%;
-  width: 70%;
+  width: 90%;
   height: auto;
   display: flex;
   justify-content: left;
