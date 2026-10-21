@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
-@EnableMethodSecurity
+///@EnableMethodSecurity       ----------VOLVER A ACTIVAR ------------------- <-----
 @AllArgsConstructor
 public class SecurityConfig {
 
@@ -50,7 +50,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"
                         ).permitAll()
 
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll()) // change for .anyRequest().authenticated())
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers
