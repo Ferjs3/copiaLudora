@@ -21,7 +21,7 @@ form{
     gap: 3px;
     border-radius: 30px;
     border: 2px solid var(--color-principal);
-
+    background-color: var(--color-base);
 
 }
 fieldset{
@@ -36,21 +36,19 @@ label{
     font-style: oblique;
 }
 input {
-    background-color: var(--color-base);
+    background-color: var(--color-secundario);
     color: var(--color-texto);
     border: 1px solid var(--color-texto-muted);
     border-radius: 8px;
     padding: 0.7rem 0.9rem;
     font-size: 0.95rem;
     outline: none;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.15s ease-in-out;
     width: 100%;
     box-sizing: border-box;           
     color-scheme: dark;
-    cursor: pointer;
 }
 
-/* Efecto moderno cuando el usuario hace clic en el input */
 input:focus {
     border-color: var(--color-principal);
     box-shadow: 0 0 0 3px rgba(40, 160, 80, 0.2);
@@ -58,7 +56,6 @@ input:focus {
 
 input::placeholder {
     color: var(--color-texto-muted);
-    opacity: 0.7;
 }
 p{
     
@@ -76,10 +73,9 @@ p{
 }
 
 
- .btn{
-    margin-left: 100px;
+.btn{
     border-radius: 100px;
     font-style: oblique;
-    background-color: var(--color-texto-muted);
-
- }
+    width: 75%;
+    align-self: center;
+}
