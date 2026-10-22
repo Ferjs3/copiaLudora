@@ -17,7 +17,16 @@ export class UserService {
         return this.http.get<Client>(this.url)
     }
 
+    getMyUserId(id : string){
+        return this.http.get<ClientRequest>(`${this.url}/${id}`)
+    }
     addUser(clientRequest : ClientRequest){
         return this.http.post<ClientRequest>(this.url,clientRequest)
     }
+
+    putUser(clienteRequest : ClientRequest){
+        return this.http.put<ClientRequest>(`${this.url}/${clienteRequest.externalId}`,clienteRequest)
+    }
+
+
 }

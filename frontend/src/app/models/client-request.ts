@@ -1,4 +1,5 @@
 export interface ClientRequest {
+    externalId? : string
     name : string
     lastName : string
     userName : string
