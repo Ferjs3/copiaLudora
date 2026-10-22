@@ -13,17 +13,17 @@ export class Catalog implements OnInit {
   private gameService = inject(GameService);
 
   games = signal<Game[]>([]);
-
   isLoading = signal<boolean>(true);
 
   ngOnInit() {
-    this.loadGames();
+    this.loadGames(0);
   }
 
-  loadGames() {
-    this.gameService.getGames().subscribe({
+  loadGames(page: number = 0) {
+    this.isLoading.set(true);
+    this.gameService.getGames(page, 50).subscribe({
       next: (data) => {
-        this.games.set(data);
+        this.games.set(data.content);
         this.isLoading.set(false);
       },
       error: (err) => {
@@ -32,4 +32,5 @@ export class Catalog implements OnInit {
       }
     });
   }
+
 }
