@@ -159,6 +159,7 @@ public class GameService implements IGameService{
         }
 
         existingGame.setName(gameDTORequest.name());
+        existingGame.setFrontPage(gameDTORequest.frontPage());
         existingGame.setPrice(gameDTORequest.price());
         existingGame.setReleaseDate(gameDTORequest.releaseDate());
         existingGame.setDescription(gameDTORequest.description());

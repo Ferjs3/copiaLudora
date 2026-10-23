@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Game } from '../models/game';
+import { Game, PageResponse } from '../models/game';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,15 @@ import { Game } from '../models/game';
 export class GameService {
 
     private http : HttpClient = inject(HttpClient);
-    private url = "http://localhost:3000/games";
+    private url = "/api/games";
 
     constructor(){}
 
-    getGames(){
-        return this.http.get<Game[]>(this.url);
-    }
+    getGames(page: number = 0, size: number = 50): Observable<PageResponse<Game>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<PageResponse<Game>>(this.url, { params });
+  }
 }
