@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Catálogo de Videojuegos</h2>
+  <h2>Tienda</h2>
 
   @if (isLoading()) {
     <p>Cargando juegos...</p>
@@ -33,5 +33,39 @@
         <p>No hay videojuegos disponibles en este momento.</p>
     }
     </div>
+
+    @if (totalPages() > 1) {
+      <div class="pagination-container">
+        <button 
+          class="page-btn" 
+          (click)="prevPage()" 
+          [disabled]="page() === 0">
+          Anterior
+        </button>
+
+        <div class="pagination-numbers">
+          @for (p of visiblePages(); track $index) {
+            @if (p === '...') {
+              <span class="pagination-ellipsis">...</span>
+            } @else {
+              <button 
+                class="page-number-btn" 
+                [class.active]="page() + 1 === p"
+                (click)="goToPage(p)">
+                {{ p }}
+              </button>
+            }
+          }
+        </div>
+
+        <button 
+          class="page-btn" 
+          (click)="nextPage()" 
+          [disabled]="page() >= totalPages() - 1">
+          Siguiente
+        </button>
+      </div>
+    }
+
   }
 </div>

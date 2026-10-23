@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { GameService } from '../../services/game-service';
 import { Game } from '../../models/game';
 import { CommonModule } from '@angular/common';
@@ -15,15 +15,42 @@ export class Catalog implements OnInit {
   games = signal<Game[]>([]);
   isLoading = signal<boolean>(true);
 
-  ngOnInit() {
-    this.loadGames(0);
+  page = signal(0);
+  size = signal(18);
+  totalPages = signal(0);
+
+  visiblePages = computed(() => {
+    const total = this.totalPages();
+    const current = this.page() + 1;
+    if (total <= 5) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    if (current <= 3) {
+      return [1, 2, 3, 4, '...', total];
+    } else if (current >= total - 2) {
+      return [1, '...', total - 3, total - 2, total - 1, total];
+    } else {
+      return [1, '...', current - 1, current, current + 1, '...', total];
+    }
+  });
+
+  goToPage(pageNumber: number | string) {
+    if (typeof pageNumber === 'number') {
+      this.page.set(pageNumber - 1); 
+      this.loadGames();
+    }
   }
 
-  loadGames(page: number = 0) {
+  ngOnInit() {
+    this.loadGames();
+  }
+
+  loadGames() {
     this.isLoading.set(true);
-    this.gameService.getGames(page, 50).subscribe({
+    this.gameService.getGames(this.page(), this.size()).subscribe({
       next: (data) => {
         this.games.set(data.content);
+        this.totalPages.set(data.totalPages);
         this.isLoading.set(false);
       },
       error: (err) => {
@@ -31,6 +58,20 @@ export class Catalog implements OnInit {
         this.isLoading.set(false);
       }
     });
+  }
+
+  nextPage() {
+    if (this.page() < this.totalPages() - 1) {
+      this.page.update(p => p + 1);
+      this.loadGames();
+    }
+  }
+
+  prevPage() {
+    if (this.page() > 0) {
+      this.page.update(p => p - 1);
+      this.loadGames();
+    }
   }
 
 }
