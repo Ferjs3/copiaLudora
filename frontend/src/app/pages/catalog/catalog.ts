@@ -47,6 +47,9 @@ export class Catalog implements OnInit {
 
   loadGames() {
     this.isLoading.set(true);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     this.gameService.getGames(this.page(), this.size()).subscribe({
       next: (data) => {
         this.games.set(data.content);
