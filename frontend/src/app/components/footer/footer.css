@@ -17,9 +17,7 @@
     height: 70%;
     transition: 2s;
 }
-.icono:hover{
-    transform: rotate(720deg);
-}
+
 .p2{
     color: var(--color-texto);
     align-items: end;
