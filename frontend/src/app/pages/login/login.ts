@@ -33,10 +33,11 @@ export class Login implements OnInit{
 
     this.service.login(this.form.value).subscribe({
       next: () => {
-        this.router.navigate(['/home'])
+        console.log('loggeado')
+        this.router.navigate([''])
       },
       error: e => {
-        // --------- logic for error ----------------------
+        console.error(e)
       }
     })
   }

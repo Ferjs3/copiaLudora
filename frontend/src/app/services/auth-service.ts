@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { Auth } from '../models/auth';
+import { AuthResponse } from '../models/auth-response';
+import { map } from 'rxjs';
 
 @Service()
 export class AuthService {
@@ -10,6 +12,8 @@ export class AuthService {
 
 
     login(auth : Auth){
-        return this.http.post<string>(`${this.url}/login`, auth)
+        return this.http.post<AuthResponse>(`${this.url}/login`, auth).pipe(
+            map(auth => localStorage.setItem('token', auth.token))
+        )
     }
 }
