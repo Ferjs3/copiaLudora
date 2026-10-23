@@ -8,12 +8,12 @@ import { Catalog } from './pages/catalog/catalog';
 import { Know } from './pages/know/know';
 
 export const routes: Routes = [
-    {path: 'home', component: Home},
+    {path: '', component: Home},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
     {path: 'user-list', component: UserList},
     {path: 'profile', component: Profile},
     {path: 'catalog', component: Catalog},
     {path: 'know', component: Know},
-    {path: '', redirectTo: '/login', pathMatch: 'full'}
+    {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

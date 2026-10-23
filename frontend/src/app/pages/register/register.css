@@ -5,17 +5,23 @@
     width: 100%;
     
 }
+h2{
+    margin-top: 10px;
+    color: var(--color-texto-muted);
+    font-size:xx-large
+}
 
 form{
     width: 400px;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 30px;
     gap: 3px;
     border-radius: 30px;
     border: 2px solid var(--color-principal);
-
+    background-color: var(--color-base);
 
 }
 fieldset{
@@ -26,7 +32,30 @@ fieldset{
     padding-bottom: 32px;
 }
 label{
-    color : var(--color-principal);
+    color : var(--color-texto-muted);
+    font-style: oblique;
+}
+input {
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
+    border: 1px solid var(--color-texto-muted);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.15s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;           
+    color-scheme: dark;
+}
+
+input:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(40, 160, 80, 0.2);
+}
+
+input::placeholder {
+    color: var(--color-texto-muted);
 }
 p{
     
@@ -38,12 +67,15 @@ p{
 }
 
 .direccion{
-    color: var(--color-principal);
+    color: var(--color-texto-muted);
     margin-top: 5px;
     
 }
 
 
- .btn{
-    margin-left: 100px;
- }
+.btn{
+    border-radius: 100px;
+    font-style: oblique;
+    width: 75%;
+    align-self: center;
+}

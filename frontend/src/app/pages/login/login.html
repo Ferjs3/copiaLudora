@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="card">
+    <img src="logo-modo-oscuro.png" alt="">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="dates">
+        <input type="text" id="username" placeholder="Nombre de usuario" formControlName="username">
+        <input type="password" id="password" placeholder="Contraseña" formControlName="password">
+        
+        @if (form.get('username')?.hasError('required') && form.get('username')?.touched 
+            || form.get('password')?.hasError('required') && form.get('password')?.touched) {
+                <p class="msj-error">* Ingrese su usuario y contraseña</p>
+        }
+        </div>
+        <button type="submit" class="btn" [disabled]="form.invalid">Acceder</button>
+        
+    </form>
+        <p>¿No tienes cuenta? <a routerLink="/register">Registrate</a></p>
+</div>
