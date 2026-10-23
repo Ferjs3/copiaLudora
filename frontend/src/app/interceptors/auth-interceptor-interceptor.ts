@@ -14,18 +14,19 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
       Authorization: `Bearer ${token}`
     }
   })
-
   : req
 
   return next(newReq).pipe(
     catchError((error : HttpErrorResponse) => {
-      if(error.status === 401){
+      if (error.status === 401 && !req.url.includes('/auth/login')){
+        return throwError(() => error)
+      }else if(error.status === 401){
         console.error('No Autorizado - Redirigiendo...')
         localStorage.removeItem('token')
-        router.createUrlTree(['/login'])
+        router.navigate(['/login'])
       }else if(error.status === 403){
         console.error('No tiene permiso - Redirigiendo...')
-        router.createUrlTree(['/home'])
+        router.navigate(['/home'])
       }
 
       return throwError(() => error)

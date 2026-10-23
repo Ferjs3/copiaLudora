@@ -16,4 +16,35 @@ export class AuthService {
             map(auth => localStorage.setItem('token', auth.token))
         )
     }
+
+    getToken(){
+        return localStorage.getItem('token')
+    }
+
+    private getPayload() : any | null{
+        const token = this.getToken()
+
+        if(!token) return null
+
+        try {
+            return JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+        } catch {
+            return null;
+        }
+    }
+
+    isLoggedIn(): boolean {
+        const payload = this.getPayload();
+        return !!payload && payload.exp * 1000 > Date.now();
+    }
+
+    getRoles(): string[] {
+        return this.getPayload()?.roles ?? [];
+    }
+
+    hasRole(role: string): boolean {
+        return this.getRoles().includes(role);
+    }
+
+    
 }
