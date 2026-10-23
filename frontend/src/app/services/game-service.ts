@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class GameService {
 
     private http : HttpClient = inject(HttpClient);
-    private url = "http://localhost:8080/api/games";
+    private url = "/api/games";
 
     constructor(){}
 
