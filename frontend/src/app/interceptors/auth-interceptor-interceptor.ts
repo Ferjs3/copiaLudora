@@ -2,11 +2,13 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { AuthService } from '../services/auth-service';
 
 export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   
   const router = inject(Router)
-  const token = localStorage.getItem('token')
+  const auth = inject(AuthService)
+  const token = auth.getToken()
 
   const newReq = token
   ? req.clone({
@@ -22,7 +24,7 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
         return throwError(() => error)
       }else if(error.status === 401){
         console.error('No Autorizado - Redirigiendo...')
-        localStorage.removeItem('token')
+        auth.logout()
         router.navigate(['/login'])
       }else if(error.status === 403){
         console.error('No tiene permiso - Redirigiendo...')
