@@ -2,9 +2,10 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { GameService } from '../../services/game-service';
 import { Game } from '../../models/game';
 import { CommonModule } from '@angular/common';
+import { Reviews } from '../../components/reviews/reviews';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, Reviews],
   selector: 'app-catalog',
   styleUrl: './catalog.css',
   templateUrl: './catalog.html',

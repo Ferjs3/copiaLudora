@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="reseñas">
+    
+    <div class="navbar">
+      <div class="titulo-seccion">
+        <h3>Reseñas de la comunidad</h3>
+        <div class="promedio-general">
+          <span class="promedio-numero">★ {{ averageRating() }}</span>
+          <span class="total-reseñas">({{ totalElements() }} reseñas)</span>
+        </div>
+      </div>
+      
+      <div class="opc">
+        <button 
+          type="button" 
+          class="btn-filtro" 
+          [class.active]="ratingFilter() === null && !onlyMineFilter()"
+          (click)="filterAll()">
+          Todas
+        </button>
+        
+        <select name="rating" id="ratingSelect" (change)="onSelectRating($event)">
+          <option value="">Calificación</option>
+          <option value="5">★★★★★ (5)</option>
+          <option value="4">★★★★ (4)</option>
+          <option value="3">★★★ (3)</option>
+          <option value="2">★★ (2)</option>
+          <option value="1">★ (1)</option>
+        </select>
+
+        <button type="button" class="btn-nueva-reseña" (click)="toggleForm()">
+          {{ showForm() ? 'Cerrar formulario' : '+ Escribir reseña' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- formulario para crear reseña -->
+    @if (showForm()) {
+      <div class="formularioReseña">
+        <h4>Tu opinión sobre el juego</h4>
+        <div class="selector-calificacion">
+          <span>Tu puntuación:</span>
+          <div class="estrellas-selector">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <button 
+                type="button" 
+                class="estrella-btn"
+                [class.active]="star <= newRating"
+                (click)="setRating(star)">
+                ★
+              </button>
+            }
+          </div>
+        </div>
+        <textarea 
+          placeholder="Escribí tu comentario sobre la experiencia con el juego..." 
+          rows="3"
+          [(ngModel)]="newComment">
+        </textarea>
+        <div class="acciones-form">
+          <button type="button" class="btn-cancelar" (click)="toggleForm()">Cancelar</button>
+          <button type="button" class="btn-publicar" (click)="submitReview()">Publicar reseña</button>
+        </div>
+      </div>
+    }
+
+    <!-- Lista dinámica de reseñas -->
+    <div class="listaReseñas">
+      @for (review of reviews(); track review.externalId) {
+        <div class="reseñaIndividual">
+          <div class="headerReseña">
+            <div class="usuario">
+              <span class="avatar">{{ review.userName ? review.userName.charAt(0).toUpperCase() : 'U' }}</span>
+              <div class="meta-usuario">
+                <span class="nombreUsuario">{{ review.userName }}</span>
+                <span class="fecha">{{ review.date | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+            <div class="valoracion-acciones">
+              <span class="estrellas">
+                ★ {{ review.rating }} / 5
+              </span>
+              <button class="btn-eliminar" title="Eliminar reseña" (click)="deleteReview(review.externalId)">🗑️</button>
+            </div>
+          </div>
+          <p class="comentario">
+            {{ review.comment }}
+          </p>
+        </div>
+      } @empty {
+        @if (!isLoading()) {
+          <p class="fin-reseñas">Aún no hay reseñas para este juego. ¡Sé el primero en opinar!</p>
+        }
+      }
+    </div>
+
+    <!-- Cargar más reseñas -->
+    <div class="cargar-mas-container">
+      @if (hasMoreReviews()) {
+        <button 
+          type="button" 
+          class="btn-cargar-mas"
+          (click)="loadMoreReviews()"
+          [disabled]="isLoading()">
+          {{ isLoading() ? 'Cargando reseñas...' : 'Ver más reseñas' }}
+        </button>
+      }
+
+      @if (!hasMoreReviews() && reviews().length > 0) {
+        <p class="fin-reseñas">
+          No hay más reseñas para mostrar.
+        </p>
+      }
+    </div>
+
+  </div>
+</div>
