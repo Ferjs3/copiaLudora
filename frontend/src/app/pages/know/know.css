@@ -1,55 +1,89 @@
-
 .conocenos {
+  
+  --card-padding: 2.5rem;
+  --card-radius: 12px;
+  --card-gap: 2rem;
+
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  background-color: var(--color-secundario);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 2.5rem;
+  gap: var(--card-gap);
   max-width: 750px;
-  margin: 0 auto;
+  margin: 1rem auto;
+  padding: var(--card-padding);
+  
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
+  border: 2px solid var(--color-principal);
+  border-radius: var(--card-radius);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  color: var(--color-texto);
-}
 
-/* Párrafo descriptivo */
-.conocenos .leudora {
-  color: var(--color-texto);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin: 0;
-  text-align: justify;
-}
+  .leudora {
+    margin: 0;
+    color: var(--color-texto);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word; /* Mejora la justificación de texto */
+  }
 
-/* Bloque de autores con Flexbox */
-.conocenos .autores {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  background-color: var(--color-base);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-}
+  .autores {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.5rem;
+    
+    background-color: var(--color-base);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: calc(var(--card-radius) - 4px);
 
-/* Título de autores */
-.conocenos .autores h3 {
-  color: var(--color-principal);
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid rgba(40, 160, 80, 0.3);
-  display: inline-block;
-  align-self: flex-start;
-}
+    h3 {
+      align-self: flex-start;
+      margin: 0 0 0.5rem 0;
+      padding-bottom: 0.4rem;
+      
+      color: var(--color-principal);
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-bottom: 2px solid rgba(40, 160, 80, 0.3);
+    }
 
-/* Párrafos individuales de los autores con Flexbox */
-.conocenos .autores p {
-  color: var(--color-texto);
-  font-size: 0.95rem;
-  margin: 0;
-  display: flex;
-  align-items: center;
+    p {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin: 0;
+      
+      color: var(--color-texto);
+      font-size: 0.95rem;
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.35em 0.8em;
+        
+        color: var(--color-principal);
+        background-color: var(--color-secundario);
+        border: 1px solid transparent;
+        border-radius: 9999px; /* Forma de píldora perfecta */
+        
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+          background-color: var(--color-principal);
+          color: var(--color-base, #fff);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          outline: none;
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
 }
