@@ -6,6 +6,7 @@ import { UserList } from './pages/user-list/user-list';
 import { Profile } from './pages/profile/profile';
 import { Catalog } from './pages/catalog/catalog';
 import { Know } from './pages/know/know';
+import { FormGame } from './pages/form-game/form-game';
 
 export const routes: Routes = [
     {path: '', component: Home},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: 'profile', component: Profile},
     {path: 'catalog', component: Catalog},
     {path: 'know', component: Know},
-    {path: '', redirectTo: '/home', pathMatch: 'full'}
+    {path: '', redirectTo: '/home', pathMatch: 'full'},
+    {path: 'game/new', component: FormGame}
 ];
