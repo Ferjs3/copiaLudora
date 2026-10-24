@@ -46,5 +46,7 @@ export class AuthService {
         return this.getRoles().includes(role);
     }
 
-    
+    logout(){
+        localStorage.removeItem('token')
+    }
 }
