@@ -1,6 +1,40 @@
 <div class="container">
   <h2>Tienda</h2>
 
+  <div class="filters-bar">
+    <button class="btn btn-filters" (click)="toggleFilters()">
+      Filtros {{ showFilters() ? '▲' : '▼' }}
+    </button>
+  
+
+@if (showFilters()) {
+  <div class="filters-panel">
+    <input
+      type="text"
+      placeholder="Buscar juego..."
+      (input)="update('name', $any($event.target).value)"
+      (keydown.enter)="search()" />
+
+    <label>
+      Precio máximo: {{ filters().maxPrice ? '$' + filters().maxPrice : 'sin límite' }}
+      <input
+        type="range" min="0" max="100" step="5"
+        [value]="filters().maxPrice ?? 100"
+        (input)="update('maxPrice', $any($event.target).value)" />
+    </label>
+
+    <!-- faltan genre, age range, date y developer-->
+
+    <div class="filter-actions">
+      <button class="btn" (click)="search()">Aplicar</button>
+      <button class="btn btn-secondary" (click)="reset()">Limpiar</button>
+    </div>
+  </div>
+  
+}
+
+</div>
+
   @if (isLoading()) {
     <p>Cargando juegos...</p>
   } @else {

@@ -2,9 +2,12 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { GameService } from '../../services/game-service';
 import { Game } from '../../models/game';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { GameFilters } from '../../models/game-filters';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-catalog',
   styleUrl: './catalog.css',
   templateUrl: './catalog.html',
@@ -18,6 +21,14 @@ export class Catalog implements OnInit {
   page = signal(0);
   size = signal(18);
   totalPages = signal(0);
+
+  filters = signal<GameFilters>({});
+
+  showFilters = signal(false);
+
+  toggleFilters() {
+    this.showFilters.update(v => !v);
+  }
 
   visiblePages = computed(() => {
     const total = this.totalPages();
@@ -33,6 +44,21 @@ export class Catalog implements OnInit {
       return [1, '...', current - 1, current, current + 1, '...', total];
     }
   });
+
+  update(field: keyof GameFilters, value: unknown) {
+    this.filters.update(f => ({ ...f, [field]: value || null }));
+  }
+
+  search() {
+    this.page.set(0);
+    this.loadGames();
+    this.showFilters.set(false);
+  }
+
+  reset() {
+    this.filters.set({});
+    this.search();
+  }
 
   goToPage(pageNumber: number | string) {
     if (typeof pageNumber === 'number') {
@@ -50,7 +76,7 @@ export class Catalog implements OnInit {
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    this.gameService.getGames(this.page(), this.size()).subscribe({
+    this.gameService.getGames(this.page(), this.size(), this.filters()).subscribe({
       next: (data) => {
         this.games.set(data.content);
         this.totalPages.set(data.totalPages);
