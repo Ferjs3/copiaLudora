@@ -2,9 +2,10 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { GameService } from '../../services/game-service';
 import { Game } from '../../models/game';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
 import { GameFilters } from '../../models/game-filters';
+import { AgeRangeService } from '../../services/age-range-service';
+import { AgeRange } from '../../models/age-range';
 
 @Component({
   imports: [CommonModule, ReactiveFormsModule],
@@ -14,9 +15,11 @@ import { GameFilters } from '../../models/game-filters';
 })
 export class Catalog implements OnInit {
   private gameService = inject(GameService);
+  private ageRangeService = inject(AgeRangeService);
 
   games = signal<Game[]>([]);
   isLoading = signal<boolean>(true);
+  ageRanges = signal<AgeRange[]>([]);
 
   page = signal(0);
   size = signal(18);
@@ -25,10 +28,6 @@ export class Catalog implements OnInit {
   filters = signal<GameFilters>({});
 
   showFilters = signal(false);
-
-  toggleFilters() {
-    this.showFilters.update(v => !v);
-  }
 
   visiblePages = computed(() => {
     const total = this.totalPages();
@@ -44,6 +43,10 @@ export class Catalog implements OnInit {
       return [1, '...', current - 1, current, current + 1, '...', total];
     }
   });
+
+  toggleFilters() {
+    this.showFilters.update(v => !v);
+  }
 
   update(field: keyof GameFilters, value: unknown) {
     this.filters.update(f => ({ ...f, [field]: value || null }));
@@ -68,7 +71,15 @@ export class Catalog implements OnInit {
   }
 
   ngOnInit() {
+    this.loadFilterOptions();
     this.loadGames();
+  }
+
+  private loadFilterOptions() {
+    this.ageRangeService.getAgeRanges().subscribe({
+      next: (data) => this.ageRanges.set([...data].sort((a, b) => a.minAge - b.minAge)),
+      error: (err) => console.error('Error al cargar clasificaciones', err),
+    });
   }
 
   loadGames() {

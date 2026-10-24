@@ -23,7 +23,19 @@
         (input)="update('maxPrice', $any($event.target).value)" />
     </label>
 
-    <!-- faltan genre, age range, date y developer-->
+    <label>
+      Clasificación por edad
+      <select
+        [value]="filters().rangeName ?? ''"
+        (change)="update('rangeName', $any($event.target).value)">
+        <option value="">Todas</option>
+        @for (range of ageRanges(); track range.externalId) {
+          <option [value]="range.rangeName">{{ range.rangeName }} (+{{ range.minAge }})</option>
+        }
+      </select>
+    </label>
+    
+    <!-- faltan genre, date y developer-->
 
     <div class="filter-actions">
       <button class="btn" (click)="search()">Aplicar</button>
