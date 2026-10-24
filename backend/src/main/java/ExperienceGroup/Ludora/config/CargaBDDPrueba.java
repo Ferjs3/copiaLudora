@@ -132,7 +132,20 @@ public class CargaBDDPrueba {
             GenreEntity sports = dbGenres.stream().filter(g -> g.getName().equals("Deporte")).findFirst().orElse(null);
             GenreEntity terror = dbGenres.stream().filter(g -> g.getName().equals("Survival Horror")).findFirst().orElse(null);
             System.out.println("====== Géneros verificados ======");
-
+           
+            // ==========================================================
+            // ROLES DE SEGURIDAD
+            // ==========================================================
+            if (roleRepository.findByRole(RolesEnum.ROLE_ADMIN).isEmpty()) {
+                roleRepository.save(new RoleEntity(null, RolesEnum.ROLE_ADMIN));
+            }
+            if (roleRepository.findByRole(RolesEnum.ROLE_DEVELOPER).isEmpty()) {
+                roleRepository.save(new RoleEntity(null, RolesEnum.ROLE_DEVELOPER));
+            }
+            if (roleRepository.findByRole(RolesEnum.ROLE_CLIENT).isEmpty()) {
+                roleRepository.save(new RoleEntity(null, RolesEnum.ROLE_CLIENT));
+            }
+            
             // ==========================================================
             // USUARIOS DEVELOPERS
             // ==========================================================
