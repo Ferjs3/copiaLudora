@@ -17,5 +17,5 @@ export const routes: Routes = [
     {path: 'catalog', component: Catalog},
     {path: 'know', component: Know},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: 'game/new', component: FormGame}
+    {path: 'games/new', component: FormGame}
 ];
