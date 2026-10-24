@@ -2,13 +2,15 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { GameService } from '../../services/game-service';
 import { Game } from '../../models/game';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { GameFilters } from '../../models/game-filters';
 import { AgeRangeService } from '../../services/age-range-service';
 import { AgeRange } from '../../models/age-range';
+import { GenreService } from '../../services/genre-service';
+import { Genre } from '../../models/genre';
+import { DeveloperService } from '../../services/developer-service';
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   selector: 'app-catalog',
   styleUrl: './catalog.css',
   templateUrl: './catalog.html',
@@ -16,10 +18,14 @@ import { AgeRange } from '../../models/age-range';
 export class Catalog implements OnInit {
   private gameService = inject(GameService);
   private ageRangeService = inject(AgeRangeService);
+  private genreService = inject(GenreService);
+  private developerService = inject(DeveloperService);
 
   games = signal<Game[]>([]);
   isLoading = signal<boolean>(true);
   ageRanges = signal<AgeRange[]>([]);
+  genres = signal<Genre[]>([]);
+  companies = signal<string[]>([]);
 
   page = signal(0);
   size = signal(18);
@@ -52,7 +58,34 @@ export class Catalog implements OnInit {
     this.filters.update(f => ({ ...f, [field]: value || null }));
   }
 
+  hasGenre(name: string) {
+    return this.filters().genreNames?.includes(name) ?? false;
+  }
+
+  get priceInvalid() {
+    const { minPrice, maxPrice } = this.filters();
+    return minPrice != null && maxPrice != null && Number(minPrice) > Number(maxPrice);
+  }
+
+  today = new Date().toLocaleDateString('en-CA');
+
+  get dateInvalid() {
+    const { minReleaseDate, maxReleaseDate } = this.filters();
+    return !!minReleaseDate && !!maxReleaseDate && minReleaseDate > maxReleaseDate;
+  }
+
+  toggleGenre(name: string) {
+    this.filters.update(f => {
+      const current = f.genreNames ?? [];
+      const next = current.includes(name)
+        ? current.filter(g => g !== name)
+        : [...current, name];
+      return { ...f, genreNames: next };
+    });
+  }
+
   search() {
+    if (this.priceInvalid || this.dateInvalid) return;
     this.page.set(0);
     this.loadGames();
     this.showFilters.set(false);
@@ -79,6 +112,16 @@ export class Catalog implements OnInit {
     this.ageRangeService.getAgeRanges().subscribe({
       next: (data) => this.ageRanges.set([...data].sort((a, b) => a.minAge - b.minAge)),
       error: (err) => console.error('Error al cargar clasificaciones', err),
+    });
+
+    this.genreService.getGenres().subscribe({
+      next: (data) => this.genres.set(data),
+      error: (err) => console.error('Error al cargar géneros', err),
+    });
+
+    this.developerService.getCompanies().subscribe({
+      next: (data) => this.companies.set(data),
+      error: (err) => console.error('Error al cargar desarrolladoras', err),
     });
   }
 
