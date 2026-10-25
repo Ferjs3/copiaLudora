@@ -1,11 +1,12 @@
 import { Component, input, effect, OnDestroy, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Game } from '../../../../models/game';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe, RouterLink],
   templateUrl: './carousel.html',
   styleUrl: './carousel.css',
 })

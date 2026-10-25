@@ -30,6 +30,10 @@ app-company-slide {
   color: var(--color-texto);
 }
 
+.btn{
+  margin: 3%;
+}
+
 @media (min-width: 768px) {
   .columna {
     padding: 0 24px;

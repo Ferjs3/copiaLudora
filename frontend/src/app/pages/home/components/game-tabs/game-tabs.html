@@ -1,5 +1,5 @@
-<section class="tabs-section">
-  <!-- Pestañas superiores -->
+<div class="container">
+  <!-- pestañas -->
   <nav class="tabs-header">
     @for (tab of tabs; track tab.id) {
       <button 
@@ -12,10 +12,10 @@
     }
   </nav>
 
-  <!-- Cuerpo de lista + previsualización -->
+  <!-- cuerpo de lista + previsualización -->
   <div class="tabs-layout">
     
-    <!-- Columna Izquierda: Lista de juegos -->
+    <!-- columna izquierda - lista de juegos -->
     <div class="games-list">
       @for (game of currentGames(); track game.externalId || $index) {
         <a 
@@ -58,7 +58,7 @@
       }
     </div>
 
-    <!-- Columna Derecha: Vista previa fija al hacer hover -->
+    <!-- columna derecha: vista previa fija al hacer hover -->
     <aside class="preview-panel">
       @if (hoveredGame(); as game) {
         <div class="preview-card">
@@ -89,4 +89,4 @@
     </aside>
 
   </div>
-</section>
+</div>

@@ -1,17 +1,15 @@
 :host {
   display: block;
   width: 100%;
-  margin: 2rem 0;
   box-sizing: border-box;
   font-family: inherit;
   color: #c6d4df;
 }
 
-.tabs-section {
+.container {
   width: 100%;
 }
 
-/* 1. Header con Pestañas */
 .tabs-header {
   display: flex;
   gap: 0.5rem;
@@ -43,14 +41,12 @@
   border-bottom: 3px solid #66c0f4;
 }
 
-/* 2. Layout Principal */
 .tabs-layout {
   display: flex;
   gap: 1.5rem;
   min-height: 480px;
 }
 
-/* Columna Izquierda: Lista */
 .games-list {
   flex: 1;
   display: flex;
@@ -133,12 +129,13 @@
 }
 
 .discount-badge {
-  background: #4c6b22;
-  color: #a4d007;
+  background: var(--color-base);
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
   font-weight: 700;
   font-size: 0.9rem;
   padding: 0.2rem 0.4rem;
-  border-radius: 2px;
+  border-radius: 15px;
 }
 
 .original-price {
@@ -157,7 +154,6 @@
   color: #a4d007;
 }
 
-/* Columna Derecha: Preview */
 .preview-panel {
   width: 320px;
   flex-shrink: 0;
@@ -236,7 +232,6 @@
   text-align: center;
 }
 
-/* Responsive: en pantallas chicas ocultamos el preview lateral */
 @media (max-width: 850px) {
   .preview-panel {
     display: none;

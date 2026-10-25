@@ -14,7 +14,7 @@
       (transitionend)="onTransitionEnd()">
       
       @for (game of displayGames; track $index) {
-        <div class="slide">
+        <a href="" class="slide">
           <div class="imagen">
             <img [src]="game.frontPage" [alt]="game.name">
           </div>
@@ -38,13 +38,13 @@
               </div>
             </div>
           </div>
-        </div>
+        </a>
       }
     </div>
 
     <!-- botones de flecha dentro del cuadro de imagen -->
-    <button class="boton prev" (click)="prev()" aria-label="Anterior">&#10094;</button>
-    <button class="boton next" (click)="next()" aria-label="Siguiente">&#10095;</button>
+    <button class="boton prev" (click)="$event.stopPropagation(); prev()" aria-label="Anterior">&#10094;</button>
+    <button class="boton next" (click)="$event.stopPropagation(); next()" aria-label="Siguiente">&#10095;</button>
   </div>
 
   <!-- barra de puntitos centrados por fuera y por debajo del cuadro -->

@@ -111,10 +111,12 @@ export class Catalog implements OnInit {
     this.route.queryParams.subscribe(params => {
     const searchName = params['name']?.trim() || null;
     const searchCategory = params['category']?.trim() || null;
+    const searchCompany = (params['company'] || params['developerCompany'])?.trim() || null;
     
     this.filters.set({
       ...(searchName ? { name: searchName } : {}),
-      ...(searchCategory ? { genreNames: [searchCategory] } : {})
+      ...(searchCategory ? { genreNames: [searchCategory] } : {}),
+      ...(searchCompany ? { developerCompany: searchCompany } : {})
     });
 
     this.page.set(0);
