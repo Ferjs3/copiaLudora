@@ -1,5 +1,6 @@
 <div class="container">
-  @if (isLoading()) {
+  <div class="columna">
+      @if (isLoading()) {
     <div class="loading">Cargando tienda...</div>
   } @else {
     <!-- buscador -->
@@ -10,5 +11,7 @@
 
     <!-- chips de categorías -->
 <app-category-slide [genres]="genres()"></app-category-slide>  
+
 }
+  </div>
 </div>

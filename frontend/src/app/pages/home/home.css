@@ -1,12 +1,22 @@
-.container {
+.columna {
+  width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    color: var(--color-texto);
     background-color: var(--color-base);
     display: flex;
     flex-direction: column;
     align-items: center;
     
+}
+app-search {
+  width: 100%;
+}
+app-category-slide {
+  display: block;
+  width: 0;
+  min-width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 .loading {
   display: flex;
@@ -15,4 +25,26 @@
   min-height: 480px;
   font-size: 1.2rem;
   color: var(--color-texto);
+}
+
+@media (min-width: 768px) {
+  .columna {
+    padding: 0 24px;
+  }
+
+  .loading {
+    min-height: 400px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .columna {
+    padding: 0 32px;
+  }
+
+  .loading {
+    min-height: 480px;
+    font-size: 1.2rem;
+  }
 }
