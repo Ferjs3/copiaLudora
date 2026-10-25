@@ -21,6 +21,9 @@
 
         <div class="dates">
           <h3>{{client.name}} {{client.lastName}}</h3>
+          @if (client.statusBlocked) {
+            <span class="badge-blocked">Bloqueado</span>
+          }
           <p><strong>Teléfono:</strong> {{client.phone}}</p>
           <p><strong>Dirección:</strong> {{client.street}} {{client.numberStreet}}</p>
           <p><strong>Fecha Nacimiento:</strong> {{client.birthDate | date:'dd/MM/yyyy'}}</p>
@@ -28,6 +31,10 @@
 
           <div class="actions">
             <button class="btn" [routerLink]="['/users', client.externalId, 'edit']">Editar</button>
+            <button type="button" class="btn" [class.danger]="!client.statusBlocked"
+                    [disabled]="busyId() === client.externalId" (click)="toggleBlock(client)">
+              {{ client.statusBlocked ? 'Desbloquear' : 'Bloquear' }}
+            </button>
           </div>
         </div>
       </section>
@@ -43,11 +50,18 @@
 
         <div class="dates">
           <h3>Usuario: {{dev.userName}}</h3>
+          @if (dev.statusBlocked) {
+            <span class="badge-blocked">Bloqueado</span>
+          }
           <p><strong>Empresa:</strong> {{dev.company}}</p>
           <p><strong>Representante:</strong> {{dev.name}} {{dev.lastName}}</p>
 
           <div class="actions">
             <button class="btn" [routerLink]="['/users', dev.externalId, 'edit']">Editar</button>
+            <button type="button" class="btn" [class.danger]="!dev.statusBlocked"
+                    [disabled]="busyId() === dev.externalId" (click)="toggleBlock(dev)">
+              {{ dev.statusBlocked ? 'Desbloquear' : 'Bloquear' }}
+            </button>
           </div>
         </div>
       </section>

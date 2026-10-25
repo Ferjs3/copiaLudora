@@ -4,6 +4,7 @@ export interface Developer {
   lastName: string;
   userName: string;
   company: string;
+  statusBlocked: boolean;
 }
  
 //paginacion 

@@ -7,6 +7,8 @@ import { UserService } from '../../services/user-service';
 
 type Tab = 'clients' | 'developers';
 
+type Blockable = { externalId: string; statusBlocked: boolean }
+
 @Component({
   imports: [RouterLink, DatePipe],
   selector: 'app-user-list',
@@ -24,6 +26,7 @@ export class UserList implements OnInit {
   totalPages = signal(1)
   loading = signal(false)
   error = signal('')
+  busyId = signal<string | null>(null)
   readonly size = 10
 
   ngOnInit(): void {
@@ -63,6 +66,34 @@ export class UserList implements OnInit {
         error: e => this.fail('developers', e),
       })
     }
+  }
+
+  toggleBlock(user: Blockable) {
+    if (this.busyId()) return
+    const block = !user.statusBlocked
+    this.busyId.set(user.externalId)
+    this.error.set('')
+
+    const request = block
+      ? this.userService.blockAccount(user.externalId)
+      : this.userService.unblockAccount(user.externalId)
+
+    request.subscribe({
+      next: () => {
+        this.clients.update(list => this.withStatus(list, user.externalId, block))
+        this.developers.update(list => this.withStatus(list, user.externalId, block))
+        this.busyId.set(null)
+      },
+      error: e => {
+        console.error(e)
+        this.busyId.set(null)
+        this.error.set(`No se pudo ${block ? 'bloquear' : 'desbloquear'} la cuenta (código ${e.status ?? 'sin respuesta'}).`)
+      },
+    })
+  }
+
+  private withStatus<T extends Blockable>(list: T[], id: string, blocked: boolean): T[] {
+    return list.map(u => u.externalId === id ? { ...u, statusBlocked: blocked } : u)
   }
 
   private setTotalPages(res: Page<unknown>) {

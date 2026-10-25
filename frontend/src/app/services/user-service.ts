@@ -9,7 +9,7 @@ import { Developer, Page } from '../models/developer';
 export class UserService {
 
     private readonly baseUrl = 'http://localhost:8080/api'
-    private readonly url = ''   // pendiente: getMyUser / addUser
+    private readonly url = ''   // ,,,,,,pendiente: getMyUser / addUsser ,,,, 
     http = inject(HttpClient)
 
     getClients(page: number, size: number) {
@@ -18,6 +18,14 @@ export class UserService {
 
     getDevelopers(page: number, size: number) {
         return this.http.get<Page<Developer>>(`${this.baseUrl}/developers`, { params: { page, size } })
+    }
+
+    blockAccount(externalId: string) {
+        return this.http.patch<void>(`${this.baseUrl}/admins/${externalId}/block`, null)
+    }
+
+    unblockAccount(externalId: string) {
+        return this.http.patch<void>(`${this.baseUrl}/admins/${externalId}/unblock`, null)
     }
 
     getAllUsers(){

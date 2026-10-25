@@ -7,4 +7,5 @@ export interface ClientResponse {
   numberStreet: number;
   birthDate: string;
   points: number;
+  statusBlocked: boolean;
 }
