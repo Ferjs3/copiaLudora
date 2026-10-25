@@ -1,4 +1,4 @@
-<h2>Cargar Nuevo Juego</h2>
+<h2>{{gameId? 'Editar juego' : 'Cargar Nuevo Juego' }}</h2>
 
 @if (genres().length > 0 && ageRanges().length > 0) {
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -75,7 +75,7 @@
             }
         </fieldset>
 
-        <button type="submit" class="btn" [disabled]="form.invalid">Crear</button>
+        <button type="submit" class="btn" [disabled]="form.invalid">{{gameId? 'Actualizar' : 'Crear' }}</button>
     </form>
 }@else {
     <h3>Cargando...</h3>

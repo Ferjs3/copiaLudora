@@ -40,7 +40,16 @@ export class GameService {
     } 
 
 
+    getGame(id : string){
+      return this.http.get<Game>(`${this.url}/${id}`)
+    }
+
+
     createGame(game : GameRequest){
       return this.http.post<Game>(this.url, game)
+    }
+
+    editGame(id : string, game : GameRequest){
+      return this.http.put<Game>(`${this.url}/${id}`, game)
     }
 }

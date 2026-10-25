@@ -6,6 +6,7 @@ import { AgeRangeService } from '../../services/age-range-service';
 import { GenreService } from '../../services/genre-service';
 import { AgeRange } from '../../models/age-range';
 import { Genre } from '../../models/genre';
+import { GameRequest } from '../../models/game-request';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -20,6 +21,7 @@ export class FormGame {
   form! : FormGroup
   route = inject(ActivatedRoute)
   router = inject(Router)
+  gameId? : string
 
   today = new Date().toLocaleDateString('en-CA')
   ageRangeService = inject(AgeRangeService)
@@ -36,6 +38,9 @@ export class FormGame {
   }
 
   loadForm(){
+    
+    this.gameId = this.route.snapshot.params['id']
+
     this.form = this.fb.group({
       name : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       frontPage: [''],
@@ -45,6 +50,18 @@ export class FormGame {
       ageRangeExternalId: ['', Validators.required],
       genreNames: this.fb.control<string[]>([], Validators.required)
     })
+
+    if(this.gameId){
+      this.gameService.getGame(this.gameId).subscribe({
+        next: data => {
+          this.form.patchValue(data)
+        },
+        error: e => {
+          console.error('Hubo un error al obtener el juego', e)
+          alert('El juego que desea editar no se cargo con exito')
+        }
+      })
+    }
   }
 
   loadAgeRange(){
@@ -83,5 +100,34 @@ export class FormGame {
 
   onSubmit(){
     
+    if(this.form.invalid) return
+
+    if(this.gameId){
+
+      this.gameService.editGame(this.gameId, this.form.value).subscribe({
+        next: () => {
+          alert('Juego actualizado con exito')
+          this.router.navigate(['/catalog']) // CAMBIAR A JUEGOS DEL DESARROLLADOR O DETALLE DEL JUEGO
+        },
+        error: e => {
+          console.error('Error al actualizar el juego', e)
+          alert('El juego no se puedo actualizar')
+        }
+      })
+
+    }else{
+
+      this.gameService.createGame(this.form.value).subscribe({
+        next: () => {
+          alert('Juego creado con exito')
+          this.router.navigate(['/catalog']) // CAMBIAR A JUEGOS DEL DESARROLLADOR O DETALLE DEL JUEGO
+        },
+        error: e => {
+          console.error('Error al crear el juego', e)
+          alert('El juego no se puedo crear')
+        }
+          
+      })
+    }
   }
 }

@@ -1,0 +1,25 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    height: 100%;
+    color: var(--color-texto);
+}
+
+form{
+    border: 2px solid var(--color-principal);
+    border-radius: 2rem;
+    padding: 2rem;
+    background-color: var(--color-secundario);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+fieldset{
+    border: none;
+
+}
