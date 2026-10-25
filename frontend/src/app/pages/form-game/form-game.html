@@ -43,7 +43,7 @@
 
         <fieldset>
             <label for="releaseDate">Fecha de Lanzamiento</label>
-            <input type="date" [min]="today" id="releaseDate" formControlName="releaseDate">
+            <input type="date" [max]="today" id="releaseDate" formControlName="releaseDate">
             @if (form.get('releaseDate')?.hasError('required') && form.get('releaseDate')?.touched) {
                 <p class="msj-error">* la fecha es obligatoria</p>
             }

@@ -9,6 +9,7 @@ import { Know } from './pages/know/know';
 import { FormGame } from './pages/form-game/form-game';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
+import { developerGuard } from './guards/developer-guard';
 
 export const routes: Routes = [
     {path: 'home', component: Home},
@@ -19,6 +20,6 @@ export const routes: Routes = [
     {path: 'catalog', component: Catalog},
     {path: 'know', component: Know},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: 'games/new', component: FormGame},
-    {path: 'games/edit/:id', component: FormGame}
+    {path: 'games/new', component: FormGame, canActivate: [developerGuard]},
+    {path: 'games/edit/:id', component: FormGame, canActivate: [developerGuard]}
 ];
