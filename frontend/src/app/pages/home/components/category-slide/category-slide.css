@@ -69,7 +69,6 @@
   transform: scale(1.04);
 }
 
-/* Tablet (>= 768px) */
 @media (min-width: 768px) {
   .seccionBarraOpciones {
     margin-bottom: 26px;
@@ -90,7 +89,6 @@
   }
 }
 
-/* Desktop (>= 1024px) */
 @media (min-width: 1024px) {
   .seccionBarraOpciones {
     width: 90%;

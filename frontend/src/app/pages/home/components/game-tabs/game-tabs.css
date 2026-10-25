@@ -3,7 +3,7 @@
   width: 100%;
   box-sizing: border-box;
   font-family: inherit;
-  color: #c6d4df;
+  color: var(--color-texto);
 }
 
 .container {
@@ -21,7 +21,7 @@
 .tab-btn {
   background: transparent;
   border: none;
-  color: #8f98a0;
+  color: var(--color-texto-muted);
   font-size: 1rem;
   font-weight: 600;
   padding: 0.75rem 1.25rem;
@@ -32,13 +32,13 @@
 }
 
 .tab-btn:hover {
-  color: #ffffff;
+  color: var(--color-texto);
 }
 
 .tab-btn.active {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.05);
-  border-bottom: 3px solid #66c0f4;
+  border-bottom: 3px solid var(--color-principal);
 }
 
 .tabs-layout {
@@ -101,7 +101,7 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-texto);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -119,7 +119,6 @@
   opacity: 0.8;
 }
 
-/* Precios */
 .game-price-wrapper {
   display: flex;
   align-items: center;
@@ -147,7 +146,7 @@
 .final-price {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-texto);
 }
 
 .final-price.free {
@@ -174,7 +173,7 @@
 .preview-title {
   margin: 0;
   font-size: 1.2rem;
-  color: #ffffff;
+  color: var(--color-texto);
 }
 
 .preview-media {
@@ -198,7 +197,7 @@
 }
 
 .rating-badge strong.positive {
-  color: #66c0f4;
+  color: var(--color-principal);
   margin-left: 0.4rem;
 }
 
@@ -233,7 +232,81 @@
 }
 
 @media (max-width: 850px) {
+  .tabs-layout {
+    min-height: auto;
+    gap: 0;
+  }
+
   .preview-panel {
     display: none;
+  }
+
+  .tabs-header {
+    gap: 0.25rem;
+    scrollbar-width: thin;
+  }
+
+  .tab-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .tabs-header {
+    margin-bottom: 0.75rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .tab-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .game-row {
+    gap: 0.6rem;
+    padding: 0.5rem;
+  }
+
+  .game-row:hover,
+  .game-row.selected {
+    transform: none;
+  }
+
+  .game-thumb {
+    width: 80px;
+    height: 44px;
+  }
+
+  .game-title {
+    font-size: 0.85rem;
+  }
+
+  .game-tags {
+    display: none;
+  }
+
+  .game-date {
+    font-size: 0.72rem;
+  }
+
+  .game-price-wrapper {
+    gap: 0.35rem;
+  }
+
+  .discount-badge {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.35rem;
+    border-radius: 8px;
+  }
+
+  .original-price {
+    font-size: 0.75rem;
+  }
+
+  .final-price {
+    font-size: 0.85rem;
   }
 }

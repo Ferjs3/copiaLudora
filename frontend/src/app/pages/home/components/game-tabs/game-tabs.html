@@ -20,7 +20,6 @@
       @for (game of currentGames(); track game.externalId || $index) {
         <a 
           [routerLink]="['/game', game.externalId]" 
-          [queryParams]="{ id: game.externalId }"
           class="game-row"
           [class.selected]="hoveredGame()?.externalId === game.externalId"
           (mouseenter)="hoveredGame.set(game)">

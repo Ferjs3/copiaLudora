@@ -14,7 +14,8 @@ app-search {
 app-search,
 app-carousel,
 app-category-slide,
-app-company-slide {
+app-company-slide,
+app-game-tabs {
   display: block;
   width: 0;
   min-width: 100%;
