@@ -1,0 +1,28 @@
+<div class="category-container">
+  <!-- flecha izquierda -->
+  <button 
+    class="nav-btn prev" 
+    (click)="scroll('left')" 
+    aria-label="Desplazar categorias hacia la izquierda">
+    &#10094;
+  </button>
+
+  <div class="category-track" #track>
+    @for (genre of genres(); track genre.name) {
+    <button 
+        type="button" 
+        class="category-chip" 
+        (click)="selectCategory(genre)">
+        <span class="category-name">{{ genre.name }}</span>
+    </button>
+}
+  </div>
+
+  <!-- flecha derecha -->
+  <button 
+    class="nav-btn next" 
+    (click)="scroll('right')" 
+    aria-label="Desplazar categorias hacia la derecha">
+    &#10095;
+  </button>
+</div>

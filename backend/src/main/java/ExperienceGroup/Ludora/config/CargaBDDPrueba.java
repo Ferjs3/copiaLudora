@@ -481,6 +481,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Super Mario Odyssey"))) {
                 GameEntity mario = new GameEntity();
                 mario.setName("Super Mario Odyssey");
+                mario.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000001130/c42553b4fd0312c31e70ec7468c6c9bccd739f340152925b9600631f2d29f8b5");
                 mario.setPrice(new BigDecimal("59.99"));
                 mario.setDescription("Aventura en 3D junto a Cappy para rescatar a la princesa Peach.");
                 mario.setReleaseDate(LocalDate.parse("2017-10-27"));
@@ -495,6 +496,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("The Legend of Zelda: BotW"))) {
                 GameEntity zelda = new GameEntity();
                 zelda.setName("The Legend of Zelda: BotW");
+                zelda.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch2/70010000096817/cfe9f8d674be958326d3ba11fc7598a4383e5c5d7809b6239ccac0783aac6cd8");
                 zelda.setPrice(new BigDecimal("59.99"));
                 zelda.setDescription("Explorá el vasto reino de Hyrule en un mundo abierto sin límites.");
                 zelda.setReleaseDate(LocalDate.parse("2017-03-03"));
@@ -523,6 +525,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Animal Crossing: New Horizons"))) {
                 GameEntity ac = new GameEntity();
                 ac.setName("Animal Crossing: New Horizons");
+                ac.setFrontPage("https://img.rtve.es/n/2015182/?w=1600");
                 ac.setPrice(new BigDecimal("59.99"));
                 ac.setDescription("Diseñá, construí y gestioná tu propia comunidad en una isla desierta.");
                 ac.setReleaseDate(LocalDate.parse("2020-03-20"));
@@ -537,6 +540,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Super Smash Bros. Ultimate"))) {
                 GameEntity smash = new GameEntity();
                 smash.setName("Super Smash Bros. Ultimate");
+                smash.setFrontPage("https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/store/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9");
                 smash.setPrice(new BigDecimal("59.99"));
                 smash.setDescription("El mayor crossover de peleas de la historia de los videojuegos.");
                 smash.setReleaseDate(LocalDate.parse("2018-12-07"));
