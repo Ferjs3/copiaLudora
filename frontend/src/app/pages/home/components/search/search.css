@@ -8,12 +8,15 @@
   max-width: 1000px;
   margin: 16px auto 12px auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 12px;
+  border-bottom: 3px solid var(--color-principal);
 }
 
+h2{
+  color: var(--color-texto);
+}
 .buscador {
   display: flex;
   align-items: center;
@@ -26,6 +29,7 @@
   padding: 0 10px;
   box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 10px;
 }
 
 .buscador:focus-within {

@@ -6,6 +6,7 @@ import { UserList } from './pages/user-list/user-list';
 import { Profile } from './pages/profile/profile';
 import { Catalog } from './pages/catalog/catalog';
 import { Know } from './pages/know/know';
+import { GameDetail } from './pages/game-detail/game-detail';
 
 export const routes: Routes = [
     {path: '', component: Home},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: 'user-list', component: UserList},
     {path: 'profile', component: Profile},
     {path: 'catalog', component: Catalog},
+    {path: 'game/:id', component: GameDetail},
     {path: 'know', component: Know},
-    {path: '', redirectTo: '/home', pathMatch: 'full'}
+    { path: '**', redirectTo: '' }
 ];
