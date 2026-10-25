@@ -7,6 +7,8 @@ import { CategorySlide } from './components/category-slide/category-slide';
 import { Genre } from '../../models/genre';
 import { GenreService } from '../../services/genre-service'; 
 import { Search } from './components/search/search';
+import { CompanySlide } from './components/company-slide/company-slide';
+import { DeveloperService } from '../../services/developer-service';
 
 export interface FilterChip {
   id: string;
@@ -17,21 +19,24 @@ export interface FilterChip {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, Search, Carousel, CategorySlide],
+  imports: [CommonModule, Search, Carousel, CategorySlide, CompanySlide],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
   private gameService = inject(GameService);
   private genreService = inject(GenreService);
+  private devService = inject(DeveloperService)
 
   featuredGames = signal<Game[]>([]);
   genres = signal<Genre[]>([]);
   isLoading = signal<boolean>(true);
+  companies = signal<string[]>([]);
 
   ngOnInit(): void {
     this.loadFeaturedGames();
     this.loadGenres(); 
+    this.loadCompanies();
   }
 
   loadFeaturedGames(): void {
@@ -48,7 +53,6 @@ export class Home implements OnInit {
     });
   }
 
-  // 4. Método que trae los géneros de la base de datos
   loadGenres(): void {
     this.genreService.getGenres().subscribe({
       next: (data) => {
@@ -57,6 +61,12 @@ export class Home implements OnInit {
       error: (err) => {
         console.error('Error al cargar generos en el home', err);
       }
+    });
+  }
+  loadCompanies():void{
+    this.devService.getCompanies().subscribe({
+      next: (data) => this.companies.set(data),
+      error: (err) => console.error('Error al cargar empresas:', err)
     });
   }
 

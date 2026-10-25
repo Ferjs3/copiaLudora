@@ -11,7 +11,10 @@
 app-search {
   width: 100%;
 }
-app-category-slide {
+app-search,
+app-carousel,
+app-category-slide,
+app-company-slide {
   display: block;
   width: 0;
   min-width: 100%;
