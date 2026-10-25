@@ -5,7 +5,8 @@ import { Carousel } from './components/carousel/carousel';
 import { GameService } from '../../services/game-service';
 import { CategorySlide } from './components/category-slide/category-slide';
 import { Genre } from '../../models/genre';
-import { GenreService } from '../../services/genre-service'; // 1. Importar el servicio
+import { GenreService } from '../../services/genre-service'; 
+import { Search } from './components/search/search';
 
 export interface FilterChip {
   id: string;
@@ -16,13 +17,13 @@ export interface FilterChip {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, Carousel, CategorySlide],
+  imports: [CommonModule, Search, Carousel, CategorySlide],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
   private gameService = inject(GameService);
-  private genreService = inject(GenreService); // 2. Inyectar el servicio
+  private genreService = inject(GenreService);
 
   featuredGames = signal<Game[]>([]);
   genres = signal<Genre[]>([]);
@@ -30,7 +31,7 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
     this.loadFeaturedGames();
-    this.loadGenres(); // 3. Ejecutar al iniciar
+    this.loadGenres(); 
   }
 
   loadFeaturedGames(): void {

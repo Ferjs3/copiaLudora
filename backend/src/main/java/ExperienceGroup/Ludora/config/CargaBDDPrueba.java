@@ -68,7 +68,7 @@ public class CargaBDDPrueba {
             // INTERRUPTOR
             // true  -> Escanea la BD en memoria e inserta SOLO los faltantes
             // false -> Carga desactivada. Si se borra en postman, queda borrado. hasta que esté true nuevamente.
-            boolean insertarTodo = false;
+            boolean insertarTodo = true;
 
             if (!insertarTodo) {
                 System.out.println("====== CARGA DESACTIVADA MANUALMENTE ======");
@@ -102,6 +102,7 @@ public class CargaBDDPrueba {
             // GÉNEROS
             List<GenreEntity> dbGenres = genreRepository.findAll();
 
+            // 1. Géneros originales
             if (dbGenres.stream().noneMatch(g -> g.getName().equals("Action"))) {
                 genreRepository.save(new GenreEntity(null, "Action", "Juegos de combate y reflejos."));
             }
@@ -121,6 +122,39 @@ public class CargaBDDPrueba {
                 genreRepository.save(new GenreEntity(null, "Survival Horror", "Supervivencia y terror."));
             }
 
+            // 2. Géneros nuevos
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Estrategia"))) {
+                genreRepository.save(new GenreEntity(null, "Estrategia", "Táctica, gestión y toma de decisiones por turnos o en tiempo real."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Indie"))) {
+                genreRepository.save(new GenreEntity(null, "Indie", "Títulos independientes con propuestas artísticas y mecánicas únicas."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Simulación"))) {
+                genreRepository.save(new GenreEntity(null, "Simulación", "Experiencias de recreación de la vida real, vehículos o profesiones."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Carreras"))) {
+                genreRepository.save(new GenreEntity(null, "Carreras", "Competencias de automovilismo, motos y velocidad arcade o simulador."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Plataformas"))) {
+                genreRepository.save(new GenreEntity(null, "Plataformas", "Saltos, precisión y obstáculos en escenarios 2D y 3D."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Puzzles"))) {
+                genreRepository.save(new GenreEntity(null, "Puzzles", "Rompecabezas, acertijos y resolución lógica."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Lucha"))) {
+                genreRepository.save(new GenreEntity(null, "Lucha", "Enfrentamientos cuerpo a cuerpo, combos y artes marciales."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Mundo Abierto"))) {
+                genreRepository.save(new GenreEntity(null, "Mundo Abierto", "Mapas masivos y libertad total de desplazamiento y objetivos."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Multijugador"))) {
+                genreRepository.save(new GenreEntity(null, "Multijugador", "Partidas online competitivas y cooperativas con otros jugadores."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Roguelike"))) {
+                genreRepository.save(new GenreEntity(null, "Roguelike", "Generación procedural, muerte permanente y progresión por partidas."));
+            }
+
+            // 3. Recarga y mapeo a entidades listas para usar
             dbGenres = genreRepository.findAll();
             GenreEntity action = dbGenres.stream().filter(g -> g.getName().equals("Action")).findFirst().orElse(null);
             GenreEntity rpg = dbGenres.stream().filter(g -> g.getName().equals("RPG")).findFirst().orElse(null);
@@ -128,6 +162,17 @@ public class CargaBDDPrueba {
             GenreEntity shooter = dbGenres.stream().filter(g -> g.getName().equals("Shooter")).findFirst().orElse(null);
             GenreEntity sports = dbGenres.stream().filter(g -> g.getName().equals("Deporte")).findFirst().orElse(null);
             GenreEntity terror = dbGenres.stream().filter(g -> g.getName().equals("Survival Horror")).findFirst().orElse(null);
+            GenreEntity estrategia = dbGenres.stream().filter(g -> g.getName().equals("Estrategia")).findFirst().orElse(null);
+            GenreEntity indie = dbGenres.stream().filter(g -> g.getName().equals("Indie")).findFirst().orElse(null);
+            GenreEntity simulacion = dbGenres.stream().filter(g -> g.getName().equals("Simulación")).findFirst().orElse(null);
+            GenreEntity carreras = dbGenres.stream().filter(g -> g.getName().equals("Carreras")).findFirst().orElse(null);
+            GenreEntity plataformas = dbGenres.stream().filter(g -> g.getName().equals("Plataformas")).findFirst().orElse(null);
+            GenreEntity puzzles = dbGenres.stream().filter(g -> g.getName().equals("Puzzles")).findFirst().orElse(null);
+            GenreEntity lucha = dbGenres.stream().filter(g -> g.getName().equals("Lucha")).findFirst().orElse(null);
+            GenreEntity mundoAbierto = dbGenres.stream().filter(g -> g.getName().equals("Mundo Abierto")).findFirst().orElse(null);
+            GenreEntity multijugador = dbGenres.stream().filter(g -> g.getName().equals("Multijugador")).findFirst().orElse(null);
+            GenreEntity roguelike = dbGenres.stream().filter(g -> g.getName().equals("Roguelike")).findFirst().orElse(null);
+
             System.out.println("====== Géneros verificados ======");
 
             // ==========================================================

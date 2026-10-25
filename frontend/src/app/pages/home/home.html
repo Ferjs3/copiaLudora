@@ -1,11 +1,14 @@
-<main class="home-page">
+<div class="container">
   @if (isLoading()) {
     <div class="loading">Cargando tienda...</div>
   } @else {
-    <!-- Bloque 1: Carrusel -->
+    <!-- buscador -->
+    <app-search></app-search>
+    
+    <!-- carrusel -->
     <app-carousel [items]="featuredGames()"></app-carousel>
 
-    <!-- Bloque 2: Carrusel/chips de categorías -->
-    <app-category-slide [genres]="genres()"></app-category-slide>
-  }
-</main>
+    <!-- chips de categorías -->
+<app-category-slide [genres]="genres()"></app-category-slide>  
+}
+</div>

@@ -1,0 +1,49 @@
+.container{
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.buscador{
+  border-radius: 20px;
+  border: 2px solid var(--color-texto-muted);
+  padding: 0.1%;
+  width: 25%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--color-base);
+}
+.lupa{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 1.5rem;
+  margin: 5px;
+}
+
+.inputBuscador{ 
+  width: 101%;
+  background-color: var(--color-base);
+  border: none;
+  outline: none;
+  padding: 8px 4px;
+  color: var(--color-texto);
+  font-size: .9rem;
+  transition: box-shadow .15s ease;
+  border-left: 2px solid var(--color-texto-muted);
+
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.inputBuscador::placeholder{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: var(--color-texto-muted);
+  opacity: 0.8;
+}

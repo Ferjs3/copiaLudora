@@ -8,6 +8,7 @@ import { AgeRange } from '../../models/age-range';
 import { GenreService } from '../../services/genre-service';
 import { Genre } from '../../models/genre';
 import { DeveloperService } from '../../services/developer-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   imports: [CommonModule],
@@ -20,6 +21,7 @@ export class Catalog implements OnInit {
   private ageRangeService = inject(AgeRangeService);
   private genreService = inject(GenreService);
   private developerService = inject(DeveloperService);
+  private route = inject(ActivatedRoute)
 
   games = signal<Game[]>([]);
   isLoading = signal<boolean>(true);
@@ -105,8 +107,20 @@ export class Catalog implements OnInit {
 
   ngOnInit() {
     this.loadFilterOptions();
+
+    this.route.queryParams.subscribe(params => {
+    const searchName = params['name']?.trim() || null;
+    const searchCategory = params['category']?.trim() || null;
+    
+    this.filters.set({
+      ...(searchName ? { name: searchName } : {}),
+      ...(searchCategory ? { genreNames: [searchCategory] } : {})
+    });
+
+    this.page.set(0);
     this.loadGames();
-  }
+  });
+}
 
   private loadFilterOptions() {
     this.ageRangeService.getAgeRanges().subscribe({

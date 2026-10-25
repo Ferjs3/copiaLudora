@@ -1,14 +1,13 @@
-.home-page {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  box-sizing: border-box;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--color-texto);
+    background-color: var(--color-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
-
 .loading {
   display: flex;
   align-items: center;
