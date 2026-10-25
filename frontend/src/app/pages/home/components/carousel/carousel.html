@@ -5,7 +5,7 @@
   (touchstart)="onTouchStart($event)"
   (touchend)="onTouchEnd($event)">
 
-  <!-- 1. Cuadro principal (recuadro de la foto y texto con bordes redondeados) -->
+  <!-- cuadro principal (recuadro de la foto y texto con bordes redondeados) -->
   <div class="carousel-viewport">
     <div 
       class="carrusel" 
@@ -42,12 +42,12 @@
       }
     </div>
 
-    <!-- Botones de flecha dentro del cuadro de imagen -->
+    <!-- botones de flecha dentro del cuadro de imagen -->
     <button class="boton prev" (click)="prev()" aria-label="Anterior">&#10094;</button>
     <button class="boton next" (click)="next()" aria-label="Siguiente">&#10095;</button>
   </div>
 
-  <!-- 2. Barrita / Puntitos centrados por fuera y por debajo del cuadro -->
+  <!-- barra de puntitos centrados por fuera y por debajo del cuadro -->
   <div class="dots">
     @for (game of items(); track game.externalId || $index; let i =$index) {
       <button 

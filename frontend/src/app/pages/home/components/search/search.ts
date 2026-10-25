@@ -12,10 +12,13 @@ export class Search {
 
   onSearch(value: string): void {
     const query = value.trim();
+
     if (query) {
       this.router.navigate(['/catalog'], {
         queryParams: { name: query }
       });
+    } else {
+      this.router.navigate(['/catalog']);
     }
   }
 }

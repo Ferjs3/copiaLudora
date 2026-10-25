@@ -19,7 +19,7 @@ export class Carousel implements OnDestroy {
   withTransition: boolean = true;
   private isAnimating: boolean = false;
   private autoPlayTimer: any;
-  readonly intervalMs: number = 2500;
+  readonly intervalMs: number = 3500;
 
   private touchStartX: number = 0;
   private touchEndX: number = 0;
@@ -46,7 +46,7 @@ export class Carousel implements OnDestroy {
     this.stopAutoPlay();
   }
 
-  // Mapea el currentIndex a los puntos de navegación sin desfasarse
+  // mapea el currentIndex a los puntos de navegación sin desfasarse
   get activeDotIndex(): number {
     const total = this.items().length;
     if (total <= 1) return 0;
@@ -97,23 +97,23 @@ export class Carousel implements OnDestroy {
     this.resetTimer();
   }
 
-  // Se ejecuta exactamente cuando la transicion CSS termina en pantalla
+  // se ejecuta exactamente cuando la transicion CSS termina en pantalla
   onTransitionEnd(): void {
     this.isAnimating = false;
     const total = this.items().length;
     if (total <= 1) return;
 
-    // Si llegó al clon del final (después del último juego real)
+    // si llega al clon del final (despues del último juego real)
     if (this.currentIndex === total + 1) {
-      this.withTransition = false; // Apaga la animación
-      this.currentIndex = 1;       // Salta al primer juego real sin que el ojo lo note
+      this.withTransition = false; // apaga la animación
+      this.currentIndex = 1;       // salta al primer juego real sin que el ojo lo note
       this.cdr.detectChanges();
     }
 
-    // Si retrocedió antes del primer juego real (clon del último)
+    // si retrocede antes del primer juego real (clon del último)
     if (this.currentIndex === 0) {
-      this.withTransition = false; // Apaga la animación
-      this.currentIndex = total;   // Salta al último juego real
+      this.withTransition = false; // apaga la animacion
+      this.currentIndex = total;   // salta al ultimo juego real
       this.cdr.detectChanges();
     }
   }
