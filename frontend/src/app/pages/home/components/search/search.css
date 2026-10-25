@@ -9,7 +9,7 @@
   margin: 16px auto 12px auto;
   padding: 0 16px;
   display: flex;
-  flex-direction: column;         /* En celular van uno arriba del otro */
+  flex-direction: column;
   align-items: stretch;
   gap: 12px;
   box-sizing: border-box;
@@ -20,7 +20,7 @@ h2 {
   color: var(--color-texto);
   margin: 0;
   font-size: 1.4rem;
-  text-align: center;             /* Queda prolijo centrado en mobile */
+  text-align: center;
 }
 
 .buscador {
@@ -76,12 +76,9 @@ h2 {
   opacity: 0.8;
 }
 
-/* ==========================================================
-   TABLET Y DESKTOP
-   ========================================================== */
 @media (min-width: 768px) {
   .container {
-    flex-direction: row;          /* Vuelve a una sola fila en pantallas grandes */
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin: 20px auto 14px auto;

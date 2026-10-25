@@ -16,6 +16,6 @@ export const routes: Routes = [
     {path: 'profile', component: Profile},
     {path: 'catalog', component: Catalog},
     {path: 'game/:id', component: GameDetail},
-    {path: 'know', component: Know},
+    {path: 'about', component: Know},
     { path: '**', redirectTo: '' }
 ];
