@@ -20,13 +20,16 @@
 
         <fieldset>
             <label for="price">Precio</label>
-            <input type="text" inputmode="numeric" id="price" placeholder="25.99" formControlName="price">
+            <div class="input-with-prefix">
+                <span class="prefix">$</span>
+                <input type="text" inputmode="numeric" id="price" placeholder="25.99" formControlName="price">
+            </div>
             @if (form.get('price')?.hasError('required') && form.get('price')?.touched) {
-                <p class="msj-error">* El precio es obligatorio</p>
+                <p class="msj-error">El precio es obligatorio</p>
             }@else if (form.get('price')?.hasError('pattern') && form.get('price')?.touched) {
-                <p class="msj-error">* El precio debe ser numerico y contener 2 decimales maximo</p>
+                <p class="msj-error">El precio debe ser numerico y contener 2 decimales maximo</p>
             }@else if (form.get('price')?.hasError('min') && form.get('price')?.touched) {
-                <p class="msj-error">* El precio debe ser positivo</p>
+                <p class="msj-error">El precio debe ser positivo</p>
             }
         </fieldset>
 
@@ -65,6 +68,7 @@
                 <input
                     type="checkbox"
                     [value]="genre.name"
+                    [checked]="form.get('genreNames')?.value?.includes(genre.name)"
                     (change)="onGenreChange($event)"
                 />
                 {{ genre.name }}
