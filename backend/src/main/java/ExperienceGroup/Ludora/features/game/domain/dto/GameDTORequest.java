@@ -14,6 +14,9 @@ public record GameDTORequest(
     @Size (max = 50, message = "The name cannot exceed 50 characters")
     String name,
 
+    @Schema(description = "Game cover image URL", example = "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg")
+    String frontPage,
+
     @Schema(description = "Game price", example = "110.70", required = true)
     @NotNull(message = "The price cannot be null")
     @PositiveOrZero(message = "The price cannot be negative")

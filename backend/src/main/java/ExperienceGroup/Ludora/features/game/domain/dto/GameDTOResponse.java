@@ -10,6 +10,7 @@ import java.util.UUID;
 public record GameDTOResponse(
         UUID externalId,
         String name,
+        String frontPage,
         BigDecimal price,
         String developer,
         String description,

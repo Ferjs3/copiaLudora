@@ -89,15 +89,18 @@ public class GameService implements IGameService{
                 GameSpecification.releaseDateAfter(minReleaseDate),
                 GameSpecification.releaseDateBefore(maxReleaseDate),
                 GameSpecification.statusBlockedEquals(false),
-                GameSpecification.hasGenreNames(genreNames),
                 GameSpecification.hasAgeRangeName(rangeName),
                 GameSpecification.hasDeveloperCompany(developerCompany)
         );
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("name").ascending());
 
-        return gameRepository.findAll(Specification.where(spec), pageable)
-                .map(responseMapper::toDTO);
+        Specification<GameEntity> finalSpec = Specification.where(spec)
+            .and(GameSpecification.hasGenreNames(genreNames));
+
+
+        return gameRepository.findAll(finalSpec, pageable)
+            .map(responseMapper::toDTO);
     }
 
 
@@ -159,6 +162,7 @@ public class GameService implements IGameService{
         }
 
         existingGame.setName(gameDTORequest.name());
+        existingGame.setFrontPage(gameDTORequest.frontPage());
         existingGame.setPrice(gameDTORequest.price());
         existingGame.setReleaseDate(gameDTORequest.releaseDate());
         existingGame.setDescription(gameDTORequest.description());

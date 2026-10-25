@@ -17,10 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
-@EnableMethodSecurity
+///@EnableMethodSecurity       ----------VOLVER A ACTIVAR ------------------- <-----
 @AllArgsConstructor
 public class SecurityConfig {
 
@@ -50,7 +51,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"
                         ).permitAll()
 
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll()) // change for .anyRequest().authenticated())
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers

@@ -36,6 +36,9 @@ public class GameEntity {
     @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(name = "front_page_url")
+    private String frontPage;
+
     @Column (nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
