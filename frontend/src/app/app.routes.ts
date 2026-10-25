@@ -7,13 +7,15 @@ import { Profile } from './pages/profile/profile';
 import { Catalog } from './pages/catalog/catalog';
 import { Know } from './pages/know/know';
 import { FormGame } from './pages/form-game/form-game';
+import { authGuard } from './guards/auth-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
-    {path: '', component: Home},
+    {path: 'home', component: Home},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
-    {path: 'user-list', component: UserList},
-    {path: 'profile', component: Profile},
+    {path: 'user-list', component: UserList, canActivate: [adminGuard]},
+    {path: 'profile', component: Profile, canActivate: [authGuard]},
     {path: 'catalog', component: Catalog},
     {path: 'know', component: Know},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
