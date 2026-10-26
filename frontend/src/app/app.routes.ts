@@ -18,7 +18,7 @@ export const routes: Routes = [
     {path: 'user-list', component: UserList, canActivate: [adminGuard]},
     {path: 'profile', component: Profile, canActivate: [authGuard]},
     {path: 'catalog', component: Catalog},
-    {path: 'know', component: Know},
+    {path: 'about', component: Know},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'games/new', component: FormGame, canActivate: [developerGuard]},
     {path: 'games/edit/:id', component: FormGame, canActivate: [developerGuard]}
