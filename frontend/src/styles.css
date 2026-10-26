@@ -23,6 +23,14 @@
     */
 }
 
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-base);
+    color: var(--color-texto);
+    overflow-x: hidden;
+}
 
 .btn{
     margin-top: 1.25rem;
