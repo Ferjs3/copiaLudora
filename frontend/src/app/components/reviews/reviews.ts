@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ReviewService } from '../../services/review-service';
@@ -12,7 +12,7 @@ import { Review, ReviewRequest } from '../../models/review';
   styleUrl: './reviews.css',
 })
 export class Reviews implements OnInit {
-  gameId = input<string>("5da86587-9ef4-4746-b932-13c303d5e044");
+  gameId = input.required<string>();
 
   private reviewService = inject(ReviewService);
 
@@ -40,6 +40,15 @@ export class Reviews implements OnInit {
 
   ngOnInit(): void {
     this.fetchReviews(true);
+  }
+
+  constructor() {
+    effect(() => {
+      const id = this.gameId();
+      if (id) {
+        this.fetchReviews(true);
+      }
+    });
   }
 
   fetchReviews(reset: boolean = false): void {
