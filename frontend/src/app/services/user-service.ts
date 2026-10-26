@@ -8,30 +8,32 @@ import { Developer, Page } from '../models/developer';
 @Service()
 export class UserService {
 
-    private readonly baseUrl = 'http://localhost:8080/api'
-    private readonly url = ''   // ,,,,,,pendiente: getMyUser / addUsser ,,,, 
+    private readonly url = '/api'
     http = inject(HttpClient)
 
     getClients(page: number, size: number) {
-        return this.http.get<Page<ClientResponse>>(`${this.baseUrl}/clients`, { params: { page, size } })
+        return this.http.get<Page<ClientResponse>>(`${this.url}/clients`, { params: { page, size } })
     }
 
     getDevelopers(page: number, size: number) {
-        return this.http.get<Page<Developer>>(`${this.baseUrl}/developers`, { params: { page, size } })
+        return this.http.get<Page<Developer>>(`${this.url}/developers`, { params: { page, size } })
     }
 
     blockAccount(externalId: string) {
-        return this.http.patch<void>(`${this.baseUrl}/admins/${externalId}/block`, null)
+        return this.http.patch<void>(`${this.url}/admins/${externalId}/block`, null)
     }
 
     unblockAccount(externalId: string) {
-        return this.http.patch<void>(`${this.baseUrl}/admins/${externalId}/unblock`, null)
+        return this.http.patch<void>(`${this.url}/admins/${externalId}/unblock`, null)
     }
 
+    
+     //-------------------------------------------------------------------------------------------//
     getAllUsers(){
         return this.http.get<Client[]>(this.url)
-    }
 
+    }
+   
     getMyUser(){
         return this.http.get<Client>(this.url)
     }
@@ -39,4 +41,5 @@ export class UserService {
     addUser(clientRequest : ClientRequest){
         return this.http.post<ClientRequest>(this.url,clientRequest)
     }
+
 }
