@@ -7,6 +7,7 @@ import { Profile } from './pages/profile/profile';
 import { Catalog } from './pages/catalog/catalog';
 import { Know } from './pages/know/know';
 import { FormGame } from './pages/form-game/form-game';
+import { GameDetail } from './pages/game-detail/game-detail';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
 import { developerGuard } from './guards/developer-guard';
@@ -21,5 +22,7 @@ export const routes: Routes = [
     {path: 'about', component: Know},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'games/new', component: FormGame, canActivate: [developerGuard]},
-    {path: 'games/edit/:id', component: FormGame, canActivate: [developerGuard]}
+    {path: 'games/edit/:id', component: FormGame, canActivate: [developerGuard]},
+    {path: 'game/:id', component: GameDetail},
+    { path: '**', redirectTo: '' }
 ];

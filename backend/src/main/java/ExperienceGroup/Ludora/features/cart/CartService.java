@@ -170,7 +170,8 @@ public class CartService implements ICartService {
                 client.getStreet(),
                 client.getNumberStreet(),
                 client.getBirthDate(),
-                client.getPoints()
+                client.getPoints(),
+                client.getStatusBlocked()
         );
 
         return new CartDTOResponse(
