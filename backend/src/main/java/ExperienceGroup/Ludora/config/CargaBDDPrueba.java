@@ -71,7 +71,7 @@ public class CargaBDDPrueba {
             // INTERRUPTOR
             // true  -> Escanea la BD en memoria e inserta SOLO los faltantes
             // false -> Carga desactivada. Si se borra en postman, queda borrado. hasta que esté true nuevamente.
-            boolean insertarTodo = false;
+            boolean insertarTodo = true;
 
             if (!insertarTodo) {
                 System.out.println("====== CARGA DESACTIVADA MANUALMENTE ======");
@@ -646,7 +646,7 @@ mario.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Mario Kart 8 Deluxe"))) {
                 GameEntity mk8 = new GameEntity();
                 mk8.setName("Mario Kart 8 Deluxe");
-                mk8.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000000153/de697f487a36d802dd9a5ff0341f717c8486221f2f1219b675af37aca63bc453")
+                mk8.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000000153/de697f487a36d802dd9a5ff0341f717c8486221f2f1219b675af37aca63bc453");
                 mk8.setPrice(new BigDecimal("49.99"));
                 mk8.setDescription("Carreras vertiginosas desafiando la gravedad con tus personajes favoritos.");
                 mk8.setReleaseDate(LocalDate.parse("2017-04-28"));
