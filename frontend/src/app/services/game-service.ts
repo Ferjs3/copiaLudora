@@ -39,6 +39,9 @@ export class GameService {
       return this.http.get<PageResponse<Game>>(this.url, { params });
     } 
 
+    getGameById(externalId: string): Observable<Game> {
+      return this.http.get<Game>(`${this.url}/${externalId}`);
+    }
 
     getGame(id : string){
       return this.http.get<Game>(`${this.url}/${id}`)

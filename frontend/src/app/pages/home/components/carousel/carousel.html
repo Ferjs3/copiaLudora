@@ -14,7 +14,7 @@
       (transitionend)="onTransitionEnd()">
       
       @for (game of displayGames; track $index) {
-        <a [routerLink]="['/game', game.externalId]" class="slide">
+        <a [routerLink]="['/catalog', game.externalId]" class="slide">
           <div class="imagen">
             <img [src]="game.frontPage" [alt]="game.name">
           </div>

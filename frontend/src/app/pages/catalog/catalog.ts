@@ -8,10 +8,11 @@ import { AgeRange } from '../../models/age-range';
 import { GenreService } from '../../services/genre-service';
 import { Genre } from '../../models/genre';
 import { DeveloperService } from '../../services/developer-service';
+import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   selector: 'app-catalog',
   styleUrl: './catalog.css',
   templateUrl: './catalog.html',

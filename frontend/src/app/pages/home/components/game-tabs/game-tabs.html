@@ -19,7 +19,7 @@
     <div class="games-list">
       @for (game of currentGames(); track game.externalId || $index) {
         <a 
-          [routerLink]="['/game', game.externalId]" 
+          [routerLink]="['/catalog', game.externalId]" 
           class="game-row"
           [class.selected]="hoveredGame()?.externalId === game.externalId"
           (mouseenter)="hoveredGame.set(game)">
