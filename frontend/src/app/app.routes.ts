@@ -13,16 +13,17 @@ import { adminGuard } from './guards/admin-guard';
 import { developerGuard } from './guards/developer-guard';
 
 export const routes: Routes = [
-    {path: 'home', component: Home},
+    {path: '', component: Home},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
     {path: 'user-list', component: UserList, canActivate: [adminGuard]},
     {path: 'profile', component: Profile, canActivate: [authGuard]},
     {path: 'catalog', component: Catalog},
     {path: 'about', component: Know},
+    {path: 'catalog/:id', component: GameDetail},
+    {path: '', redirectTo: '', pathMatch: 'full'},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'games/new', component: FormGame, canActivate: [developerGuard]},
     {path: 'games/edit/:id', component: FormGame, canActivate: [developerGuard]},
-    {path: 'game/:id', component: GameDetail},
     { path: '**', redirectTo: '' }
 ];
