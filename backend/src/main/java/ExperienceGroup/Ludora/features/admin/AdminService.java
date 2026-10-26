@@ -200,28 +200,21 @@ public class AdminService implements IAdminService{
 
     @Override
     @PreAuthorize("hasRole('ADMIN')")
-    @Transactional
     public void blockAccount(UUID externalId) {
-        setBlocked(externalId, true);
+        CredentialsEntity credentials = credentialsRepository.findByExternalId(externalId)
+                .orElseThrow(() -> new CredentialsNotFoundException("Credentials not found for user: " + externalId));
+        credentials.setAccountNonLocked(false);
+        credentialsRepository.save(credentials);
     }
 
     /// ----------------------------------DESBANEAR UN USUARIO O DEVELOPER
 
     @Override
     @PreAuthorize("hasRole('ADMIN')")
-    @Transactional
     public void unblockAccount(UUID externalId) {
-        setBlocked(externalId, false);
-    }
-
-    // Mantiene sincronizados el login (accountNonLocked) y el estado visible del usuario (statusBlocked)
-    private void setBlocked(UUID externalId, boolean blocked) {
         CredentialsEntity credentials = credentialsRepository.findByExternalId(externalId)
                 .orElseThrow(() -> new CredentialsNotFoundException("Credentials not found for user: " + externalId));
-        credentials.setAccountNonLocked(!blocked);
-        if (credentials.getUser() != null) {
-            credentials.getUser().setStatusBlocked(blocked);
-        }
+        credentials.setAccountNonLocked(true);
         credentialsRepository.save(credentials);
     }
 
