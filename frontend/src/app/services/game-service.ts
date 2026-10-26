@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Game, PageResponse } from '../models/game';
 import { Observable } from 'rxjs';
 import { GameFilters } from '../models/game-filters';
+import { GameRequest } from '../models/game-request';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,18 @@ export class GameService {
 
     getGameById(externalId: string): Observable<Game> {
       return this.http.get<Game>(`${this.url}/${externalId}`);
+    }
+
+    getGame(id : string){
+      return this.http.get<Game>(`${this.url}/${id}`)
+    }
+
+
+    createGame(game : GameRequest){
+      return this.http.post<Game>(this.url, game)
+    }
+
+    editGame(id : string, game : GameRequest){
+      return this.http.put<Game>(`${this.url}/${id}`, game)
     }
 }

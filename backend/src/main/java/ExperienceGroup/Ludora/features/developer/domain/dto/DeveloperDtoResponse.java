@@ -6,7 +6,8 @@ public record DeveloperDtoResponse(UUID externalId,
                                    String name,
                                    String lastName,
                                    String userName,
-                                   String company
+                                   String company,
+                                   Boolean statusBlocked
 ) {
 
 }
