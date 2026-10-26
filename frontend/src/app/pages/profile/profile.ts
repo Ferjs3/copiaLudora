@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Client } from '../../models/client';
 import { UserService } from '../../services/user-service';
 import { RouterLink } from '@angular/router';
 import { ClientResponse } from '../../models/client-response';
@@ -23,7 +22,7 @@ export class Profile{
   }
 
   loadUser(){
-    
+
   }
 
 }
