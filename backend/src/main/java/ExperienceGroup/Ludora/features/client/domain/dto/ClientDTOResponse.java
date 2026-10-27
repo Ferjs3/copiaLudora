@@ -10,5 +10,6 @@ public record ClientDTOResponse (UUID externalId,
                                  String street,
                                  Integer numberStreet,
                                  LocalDate birthDate,
-                                 Integer points)
+                                 Integer points,
+                                 Boolean statusBlocked)
 { }

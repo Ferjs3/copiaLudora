@@ -71,7 +71,7 @@ public class CargaBDDPrueba {
             // INTERRUPTOR
             // true  -> Escanea la BD en memoria e inserta SOLO los faltantes
             // false -> Carga desactivada. Si se borra en postman, queda borrado. hasta que esté true nuevamente.
-            boolean insertarTodo = false;
+            boolean insertarTodo = true;
 
             if (!insertarTodo) {
                 System.out.println("====== CARGA DESACTIVADA MANUALMENTE ======");
@@ -105,6 +105,7 @@ public class CargaBDDPrueba {
             // GÉNEROS
             List<GenreEntity> dbGenres = genreRepository.findAll();
 
+            // 1. Géneros originales
             if (dbGenres.stream().noneMatch(g -> g.getName().equals("Action"))) {
                 genreRepository.save(new GenreEntity(null, "Action", "Juegos de combate y reflejos."));
             }
@@ -124,6 +125,39 @@ public class CargaBDDPrueba {
                 genreRepository.save(new GenreEntity(null, "Survival Horror", "Supervivencia y terror."));
             }
 
+            // 2. Géneros nuevos
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Estrategia"))) {
+                genreRepository.save(new GenreEntity(null, "Estrategia", "Táctica, gestión y toma de decisiones por turnos o en tiempo real."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Indie"))) {
+                genreRepository.save(new GenreEntity(null, "Indie", "Títulos independientes con propuestas artísticas y mecánicas únicas."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Simulación"))) {
+                genreRepository.save(new GenreEntity(null, "Simulación", "Experiencias de recreación de la vida real, vehículos o profesiones."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Carreras"))) {
+                genreRepository.save(new GenreEntity(null, "Carreras", "Competencias de automovilismo, motos y velocidad arcade o simulador."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Plataformas"))) {
+                genreRepository.save(new GenreEntity(null, "Plataformas", "Saltos, precisión y obstáculos en escenarios 2D y 3D."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Puzzles"))) {
+                genreRepository.save(new GenreEntity(null, "Puzzles", "Rompecabezas, acertijos y resolución lógica."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Lucha"))) {
+                genreRepository.save(new GenreEntity(null, "Lucha", "Enfrentamientos cuerpo a cuerpo, combos y artes marciales."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Mundo Abierto"))) {
+                genreRepository.save(new GenreEntity(null, "Mundo Abierto", "Mapas masivos y libertad total de desplazamiento y objetivos."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Multijugador"))) {
+                genreRepository.save(new GenreEntity(null, "Multijugador", "Partidas online competitivas y cooperativas con otros jugadores."));
+            }
+            if (dbGenres.stream().noneMatch(g -> g.getName().equals("Roguelike"))) {
+                genreRepository.save(new GenreEntity(null, "Roguelike", "Generación procedural, muerte permanente y progresión por partidas."));
+            }
+
+            // 3. Recarga y mapeo a entidades listas para usar
             dbGenres = genreRepository.findAll();
             GenreEntity action = dbGenres.stream().filter(g -> g.getName().equals("Action")).findFirst().orElse(null);
             GenreEntity rpg = dbGenres.stream().filter(g -> g.getName().equals("RPG")).findFirst().orElse(null);
@@ -131,6 +165,17 @@ public class CargaBDDPrueba {
             GenreEntity shooter = dbGenres.stream().filter(g -> g.getName().equals("Shooter")).findFirst().orElse(null);
             GenreEntity sports = dbGenres.stream().filter(g -> g.getName().equals("Deporte")).findFirst().orElse(null);
             GenreEntity terror = dbGenres.stream().filter(g -> g.getName().equals("Survival Horror")).findFirst().orElse(null);
+            GenreEntity estrategia = dbGenres.stream().filter(g -> g.getName().equals("Estrategia")).findFirst().orElse(null);
+            GenreEntity indie = dbGenres.stream().filter(g -> g.getName().equals("Indie")).findFirst().orElse(null);
+            GenreEntity simulacion = dbGenres.stream().filter(g -> g.getName().equals("Simulación")).findFirst().orElse(null);
+            GenreEntity carreras = dbGenres.stream().filter(g -> g.getName().equals("Carreras")).findFirst().orElse(null);
+            GenreEntity plataformas = dbGenres.stream().filter(g -> g.getName().equals("Plataformas")).findFirst().orElse(null);
+            GenreEntity puzzles = dbGenres.stream().filter(g -> g.getName().equals("Puzzles")).findFirst().orElse(null);
+            GenreEntity lucha = dbGenres.stream().filter(g -> g.getName().equals("Lucha")).findFirst().orElse(null);
+            GenreEntity mundoAbierto = dbGenres.stream().filter(g -> g.getName().equals("Mundo Abierto")).findFirst().orElse(null);
+            GenreEntity multijugador = dbGenres.stream().filter(g -> g.getName().equals("Multijugador")).findFirst().orElse(null);
+            GenreEntity roguelike = dbGenres.stream().filter(g -> g.getName().equals("Roguelike")).findFirst().orElse(null);
+
             System.out.println("====== Géneros verificados ======");
 
             // ==========================================================
@@ -492,8 +537,8 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("GTA V"))) {
                 GameEntity gta = new GameEntity();
                 gta.setName("GTA V");
-                gta.setFrontPage("https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg");
                 gta.setPrice(new BigDecimal("29.99"));
+                gta.setFrontPage("https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg");
                 gta.setDescription("Crimen, asaltos y caos en la ciudad de Los Santos.");
                 gta.setReleaseDate(LocalDate.parse("2013-09-17"));
                 gta.setDeveloper(francoDev);
@@ -571,7 +616,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Super Mario Odyssey"))) {
                 GameEntity mario = new GameEntity();
                 mario.setName("Super Mario Odyssey");
-                mario.setFrontPage("https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/store/software/switch/70010000001130/c42553b4fd0312c31e70ec7468c6c9bccd739f340152925b9600631f2d29f8b5");
+mario.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000001130/c42553b4fd0312c31e70ec7468c6c9bccd739f340152925b9600631f2d29f8b5");
                 mario.setPrice(new BigDecimal("59.99"));
                 mario.setDescription("Aventura en 3D junto a Cappy para rescatar a la princesa Peach.");
                 mario.setReleaseDate(LocalDate.parse("2017-10-27"));
@@ -586,7 +631,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("The Legend of Zelda: BotW"))) {
                 GameEntity zelda = new GameEntity();
                 zelda.setName("The Legend of Zelda: BotW");
-                zelda.setFrontPage("https://i.blogs.es/15da49/zelda00/1366_2000.jpg");
+                zelda.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch2/70010000096817/cfe9f8d674be958326d3ba11fc7598a4383e5c5d7809b6239ccac0783aac6cd8");
                 zelda.setPrice(new BigDecimal("59.99"));
                 zelda.setDescription("Explorá el vasto reino de Hyrule en un mundo abierto sin límites.");
                 zelda.setReleaseDate(LocalDate.parse("2017-03-03"));
@@ -616,7 +661,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Animal Crossing: New Horizons"))) {
                 GameEntity ac = new GameEntity();
                 ac.setName("Animal Crossing: New Horizons");
-                ac.setFrontPage("https://imagen.nextn.es/wp-content/uploads/2019/06/1906-11-Animal-Crossing-New-Horizons-01.jpg?strip=all&sharp=1");
+                ac.setFrontPage("https://img.rtve.es/n/2015182/?w=1600");
                 ac.setPrice(new BigDecimal("59.99"));
                 ac.setDescription("Diseñá, construí y gestioná tu propia comunidad en una isla desierta.");
                 ac.setReleaseDate(LocalDate.parse("2020-03-20"));
@@ -631,7 +676,7 @@ public class CargaBDDPrueba {
             if (dbGames.stream().noneMatch(g -> g.getName().equals("Super Smash Bros. Ultimate"))) {
                 GameEntity smash = new GameEntity();
                 smash.setName("Super Smash Bros. Ultimate");
-                smash.setFrontPage("https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9");
+                smash.setFrontPage("https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/store/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9");
                 smash.setPrice(new BigDecimal("59.99"));
                 smash.setDescription("El mayor crossover de peleas de la historia de los videojuegos.");
                 smash.setReleaseDate(LocalDate.parse("2018-12-07"));
@@ -641,6 +686,7 @@ public class CargaBDDPrueba {
                 smash.setStatusBlocked(false);
                 gameRepository.save(smash);
             }
+
             // ----------------------------------------------------------
             // 5 JUEGOS DE CD PROJEKT RED (cdpDev)
             // ----------------------------------------------------------
@@ -879,7 +925,7 @@ public class CargaBDDPrueba {
             }
             System.out.println("====== Catálogo de juegos verificado y cargado ======");
 
-// ==========================================================
+            // ==========================================================
             // REVIEWS
             // ==========================================================
             if (clientCosme != null && clientEsteban != null && clientAlan != null) {
@@ -887,7 +933,7 @@ public class CargaBDDPrueba {
                 List<ReviewEntity> dbReviews = reviewRepository.findAll();
 
                 // ------------------------------------------------------
-                // REVIEWS: God of War Ragnarok
+                // REVIEWS EN: God of War Ragnarok
                 // ------------------------------------------------------
                 GameEntity dbGow = dbGames.stream().filter(g -> g.getName().equals("God of War Ragnarok")).findFirst().orElse(null);
                 if (dbGow != null) {
@@ -912,7 +958,7 @@ public class CargaBDDPrueba {
                 }
 
                 // ------------------------------------------------------
-                // REVIEWS: GTA V
+                // REVIEWS EN: GTA V
                 // ------------------------------------------------------
                 GameEntity dbGta = dbGames.stream().filter(g -> g.getName().equals("GTA V")).findFirst().orElse(null);
                 if (dbGta != null) {
@@ -937,7 +983,7 @@ public class CargaBDDPrueba {
                 }
 
                 // ------------------------------------------------------
-                // REVIEWS: Super Mario Odyssey
+                // REVIEWS EN: Super Mario Odyssey
                 // ------------------------------------------------------
                 GameEntity dbMario = dbGames.stream().filter(g -> g.getName().equals("Super Mario Odyssey")).findFirst().orElse(null);
                 if (dbMario != null) {
@@ -962,7 +1008,7 @@ public class CargaBDDPrueba {
                 }
 
                 // ------------------------------------------------------
-                // REVIEWS: Red Dead Redemption 2
+                // REVIEWS EN: Red Dead Redemption 2
                 // ------------------------------------------------------
                 GameEntity dbRdr2 = dbGames.stream().filter(g -> g.getName().equals("Red Dead Redemption 2")).findFirst().orElse(null);
                 if (dbRdr2 != null) {
@@ -977,7 +1023,7 @@ public class CargaBDDPrueba {
                     }
                 }
 
-                // ------------------------------------------------------
+                 // ------------------------------------------------------
                 // REVIEWS: Elden Ring (FromSoftware)
                 // ------------------------------------------------------
                 GameEntity dbElden = dbGames.stream().filter(g -> g.getName().equals("Elden Ring")).findFirst().orElse(null);
@@ -1049,6 +1095,7 @@ public class CargaBDDPrueba {
                         reviewRepository.save(r12);
                     }
                 }
+
 
                 System.out.println("====== Matriz de reviews cruzadas verificadas y cargadas ======");
             }
