@@ -12,7 +12,7 @@
 }
 
 .reseñas {
-  width: 95%;
+  width: 100%;
   max-width: 1200px;
   background-color: var(--color-secundario);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -98,7 +98,7 @@
 }
 
 .opc select {
-  background-color: #0b1118;
+  background-color: var(--color-base);
   color: var(--color-principal);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
@@ -261,6 +261,7 @@
 .meta-usuario {
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
 }
 
 .nombreUsuario {
@@ -290,12 +291,13 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 0.95rem;
+  color: var(--color-principal);
   opacity: 0.6;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .btn-eliminar:hover {
+  color: var(--color-peligro);
   opacity: 1;
   transform: scale(1.1);
 }
