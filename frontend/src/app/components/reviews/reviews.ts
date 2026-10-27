@@ -11,7 +11,7 @@ import { Review, ReviewRequest } from '../../models/review';
   templateUrl: './reviews.html',
   styleUrl: './reviews.css',
 })
-export class Reviews implements OnInit {
+export class Reviews{
   gameId = input.required<string>();
 
   private reviewService = inject(ReviewService);
@@ -37,10 +37,6 @@ export class Reviews implements OnInit {
     const sum = list.reduce((acc, rev) => acc + rev.rating, 0);
     return (sum / list.length).toFixed(1);
   });
-
-  ngOnInit(): void {
-    this.fetchReviews(true);
-  }
 
   constructor() {
     effect(() => {

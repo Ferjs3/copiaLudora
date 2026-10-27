@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { GameService } from '../../services/game-service';
 import { Game } from '../../models/game';
@@ -12,11 +12,10 @@ import { Reviews } from '../../components/reviews/reviews';
 })
 export class GameDetail implements OnInit{
 
-  id = input.required<string>();
-
   private route = inject(ActivatedRoute);
   private gameService = inject(GameService);
 
+  gameId = signal<string>(''); 
   game = signal<Game | null>(null);
   isLoading = signal(true);
   notFound = signal(false); 
@@ -28,6 +27,8 @@ export class GameDetail implements OnInit{
       this.isLoading.set(false);
       return;
     }
+
+    this.gameId.set(id);
 
     this.gameService.getGameById(id).subscribe({
       next: (data) => {
