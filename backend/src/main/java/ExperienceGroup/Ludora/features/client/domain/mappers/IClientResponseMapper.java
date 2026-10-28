@@ -19,5 +19,5 @@ public interface IClientResponseMapper extends IMapper<ClientEntity, ClientDTORe
 
     default Email map(String email) {
     return email == null ? null : new Email(email);
-}
+    }
 }

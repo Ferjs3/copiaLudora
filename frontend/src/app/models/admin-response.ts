@@ -3,5 +3,6 @@ export interface AdminResponse {
     name : string
     lastName : string
     userName : string
+    email : string
     employeeId : number
 }
