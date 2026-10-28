@@ -42,7 +42,7 @@ export class Login implements OnInit{
     this.service.login(this.form.value).subscribe({
       next: () => {
         console.log('loggeado')
-        this.router.navigate([''])
+        this.router.navigate(['/home'])
       },
       error: (e : HttpErrorResponse) => {
         console.error(e)
