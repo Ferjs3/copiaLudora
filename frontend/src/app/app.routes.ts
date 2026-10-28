@@ -11,11 +11,12 @@ import { GameDetail } from './pages/game-detail/game-detail';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
 import { developerGuard } from './guards/developer-guard';
+import { loginGuard } from './guards/login-guard';
 
 export const routes: Routes = [
     {path: '', component: Home},
-    {path: 'login', component: Login},
-    {path: 'register', component: Register},
+    {path: 'login', component: Login, canActivate: [loginGuard]},
+    {path: 'register', component: Register, canActivate: [loginGuard]},
     {path: 'user-list', component: UserList, canActivate: [adminGuard]},
     {path: 'profile', component: Profile, canActivate: [authGuard]},
     {path: 'catalog', component: Catalog},

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { Client } from '../models/client';
 import { ClientRequest } from '../models/client-request';
 import { ClientResponse } from '../models/client-response';
 import { Developer, Page } from '../models/developer';
+import { AdminResponse } from '../models/admin-response';
 
 @Service()
 export class UserService {
@@ -29,15 +29,22 @@ export class UserService {
 
     
      //-------------------------------------------------------------------------------------------//
-    getAllUsers(){
-        return this.http.get<Client[]>(this.url)
 
-    }
-   
-    getMyUser(){
-        return this.http.get<Client>(this.url)
+
+    clientProfile(){
+        return this.http.get<ClientResponse>(`${this.url}/clients/profile`)
     }
 
+    developerProfile(){
+        return this.http.get<Developer>(`${this.url}/developers/profile`)
+    }
+
+    adminProfile(){
+        return this.http.get<AdminResponse>(`${this.url}/admins/profile`)
+    }
+    
+
+    // client user
     addUser(clientRequest : ClientRequest){
         return this.http.post<ClientRequest>(this.url,clientRequest)
     }
