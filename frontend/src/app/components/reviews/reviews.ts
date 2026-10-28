@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ReviewService } from '../../services/review-service';
@@ -11,7 +11,7 @@ import { Review, ReviewRequest } from '../../models/review';
   templateUrl: './reviews.html',
   styleUrl: './reviews.css',
 })
-export class Reviews{
+export class Reviews {
   gameId = input.required<string>();
 
   private reviewService = inject(ReviewService);
@@ -29,7 +29,7 @@ export class Reviews{
   newRating: number = 5;
   newComment: string = '';
 
-  hasMoreReviews = computed(() => this.currentPage() < this.totalPages() - 1);
+  selectedReview = signal<Review | null>(null);
 
   averageRating = computed(() => {
     const list = this.reviews();
@@ -79,13 +79,6 @@ export class Reviews{
     });
   }
 
-  loadMoreReviews(): void {
-    if (this.hasMoreReviews() && !this.isLoading()) {
-      this.currentPage.update(p => p + 1);
-      this.fetchReviews(false);
-    }
-  }
-
   filterAll(): void {
     this.ratingFilter.set(null);
     this.onlyMineFilter.set(false);
@@ -127,6 +120,23 @@ export class Reviews{
       },
       error: (err) => console.error('Error submitting review:', err)
     });
+  }
+
+  openReviewDetail(review: Review): void {
+    this.selectedReview.set(review);
+  }
+
+  closeReviewDetail(): void {
+    this.selectedReview.set(null);
+  }
+
+  onEditReview(review: Review): void {
+    console.log('Modificar reseña:', review);
+  }
+
+  onDeleteReviewFromModal(externalId: string): void {
+    this.deleteReview(externalId);
+    this.closeReviewDetail();
   }
 
   deleteReview(externalId: string): void {
