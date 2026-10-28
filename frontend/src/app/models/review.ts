@@ -5,6 +5,7 @@ export interface Review {
   date: string;
   userName: string;
   gameTitle: string;
+  clientExternalId: string;
 }
 
 export interface ReviewRequest {

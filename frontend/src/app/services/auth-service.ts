@@ -65,4 +65,12 @@ export class AuthService {
         return this.getRoles().includes(role);
     }
 
+    getClientExternalId(): string | null {
+    return this.getPayload()?.externalId ?? null;
+    }
+
+    getUsername(): string | null {
+    return this.getPayload()?.sub ?? null;
+    }
+
 }

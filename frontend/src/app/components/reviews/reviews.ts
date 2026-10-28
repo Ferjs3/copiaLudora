@@ -3,11 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ReviewService } from '../../services/review-service';
 import { Review, ReviewRequest } from '../../models/review';
+import { AuthService } from '../../services/auth-service';
+import { ReviewDetailModalComponent } from './components/review-detail-modal/review-detail-modal';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, ReviewDetailModalComponent],
   templateUrl: './reviews.html',
   styleUrl: './reviews.css',
 })
@@ -15,6 +17,7 @@ export class Reviews {
   gameId = input.required<string>();
 
   private reviewService = inject(ReviewService);
+  private authService = inject(AuthService);
 
   reviews = signal<Review[]>([]);
   currentPage = signal<number>(0);
@@ -29,7 +32,27 @@ export class Reviews {
   newRating: number = 5;
   newComment: string = '';
 
+  errorMessage = signal<string | null>(null);
+
   selectedReview = signal<Review | null>(null);
+
+  // id del usuario logueado desde el token
+  currentUserId = computed(() => this.authService.getClientExternalId());
+
+  canWriteReview = computed(() => {
+  return this.isLoggedIn() && !this.userHasReviewed();
+  });
+
+  currentUsername = computed(() => this.authService.getUsername());
+  isLoggedIn = computed(() => this.authService.isLoggedIn());
+
+  // valida si el usuario actual ya tiene una reseña publicada
+  userHasReviewed = computed(() => {
+    const myId = this.currentUserId();
+    if (!myId) return false;
+    return this.reviews().some(r => r.clientExternalId === myId);
+  });
+  
 
   averageRating = computed(() => {
     const list = this.reviews();
@@ -42,16 +65,12 @@ export class Reviews {
     effect(() => {
       const id = this.gameId();
       if (id) {
-        this.fetchReviews(true);
+        this.fetchReviews();
       }
     });
   }
 
-  fetchReviews(reset: boolean = false): void {
-    if (reset) {
-      this.currentPage.set(0);
-    }
-
+  fetchReviews(): void {
     this.isLoading.set(true);
 
     this.reviewService.getReviews({
@@ -64,12 +83,7 @@ export class Reviews {
       next: (res) => {
         this.totalPages.set(res.totalPages);
         this.totalElements.set(res.totalElements);
-
-        if (reset) {
-          this.reviews.set(res.content);
-        } else {
-          this.reviews.update(prev => [...prev, ...res.content]);
-        }
+        this.reviews.set(res.content);
         this.isLoading.set(false);
       },
       error: (err) => {
@@ -82,13 +96,15 @@ export class Reviews {
   filterAll(): void {
     this.ratingFilter.set(null);
     this.onlyMineFilter.set(false);
-    this.fetchReviews(true);
+    this.currentPage.set(0);
+    this.fetchReviews();
   }
 
   onSelectRating(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
     this.ratingFilter.set(value ? Number(value) : null);
-    this.fetchReviews(true);
+    this.currentPage.set(0);
+    this.fetchReviews();
   }
 
   setRating(value: number): void {
@@ -100,13 +116,12 @@ export class Reviews {
   }
 
   submitReview(): void {
-    if (!this.newComment.trim()) return;
-
-    const clientUuid = 'UUID_DEL_USUARIO_LOGUEADO';
+    const clientUuid = this.currentUserId();
+    if (!this.newComment.trim() || !clientUuid) return;
 
     const request: ReviewRequest = {
       gameExternalId: this.gameId(),
-      clientExternalId: clientUuid,
+      clientExternalId: this.authService.getClientExternalId() ?? '',
       rating: this.newRating,
       comment: this.newComment
     };
@@ -116,11 +131,18 @@ export class Reviews {
         this.newComment = '';
         this.newRating = 5;
         this.showForm.set(false);
-        this.fetchReviews(true);
+        this.currentPage.set(0);
+        this.fetchReviews();
       },
-      error: (err) => console.error('Error submitting review:', err)
-    });
-  }
+      error: (err) => {
+      if (err.status === 409) {
+        this.errorMessage.set('Debés tener este juego en tu biblioteca para publicar una reseña.');
+      } else {
+        this.errorMessage.set('No se pudo publicar la reseña. Intentalo más tarde.');
+      }
+    }
+  });
+}
 
   openReviewDetail(review: Review): void {
     this.selectedReview.set(review);
