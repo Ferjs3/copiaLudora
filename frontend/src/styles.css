@@ -12,6 +12,7 @@
     --color-secundario: #2D2D2D;      /* Superficies */
     --color-texto: #FCFCFC;           /* Texto principal*/
     --color-texto-muted: #5a5f5c;     /* Detalles y textos secundarios*/
+    --color-peligro: #d93838;         /* Sectores donde requiera atencion y rojos fuertes */
 
     /*
     Colores modo claro
@@ -21,4 +22,47 @@
     --color-texto: #101414;        //Texto principal
     --color-texto-muted: #5a5f5c;  //Detalles y textos secundarios
     */
+}
+
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-base);
+    color: var(--color-texto);
+    overflow-x: hidden;
+}
+
+.btn{
+    margin-top: 1.25rem;
+    background-color: var(--color-principal);
+    color: var(--color-base);
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; 
+    letter-spacing: 0.3px;
+    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover, .btn:focus-visible{
+    background-color: color-mix(in srgb, var(--color-principal) 85%, white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 160, 80, 0.3);
+}
+
+.btn:disabled{
+    background-color: var(--color-base);
+    border: 1px solid var(--color-texto-muted);
+    color: var(--color-texto-muted);
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: .6;
 }

@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="container">
+  <div class="columna">
+      @if (isLoading()) {
+    <div class="loading">Cargando tienda...</div>
+  } @else {
+    <!-- buscador -->
+    <app-search></app-search>
+    
+    <!-- carrusel -->
+    <app-carousel [items]="featuredGames()"></app-carousel>
+
+    <!-- chips de categorías -->
+    <app-category-slide [genres]="genres()"></app-category-slide>  
+    
+    <!-- tabla con pestañas -->
+    <app-game-tabs [games]="tabGames()"></app-game-tabs>
+
+    <!-- chips de companias -->
+    <app-company-slide [companies]="companies()"></app-company-slide>
+
+    <button class="btn" routerLink="/catalog">Ver todos los juegos</button>
+
+}
+  </div>
+</div>
