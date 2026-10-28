@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   imports: [CommonModule, RouterLink],
+
   selector: 'app-catalog',
   styleUrl: './catalog.css',
   templateUrl: './catalog.html',
