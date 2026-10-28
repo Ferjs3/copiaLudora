@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-#profile {
+.profile {
     background-color: var(--color-secundario);
     color: var(--color-texto);
     display: flex;
@@ -31,7 +31,7 @@
     margin: auto;
 }
 
-#img-profile {
+.img-profile {
     width: 12rem;
     height: 12rem;
     border-radius: 50%;
@@ -42,11 +42,12 @@
     transition: all .15s ease;
 }
 
-#img-profile:hover{
+.img-profile:hover{
     transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 160, 80, 0.3);
 }
 
-#dates {
+.dates {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
@@ -78,22 +79,23 @@
     }
 }
 
-#profile > p {
+.profile > p {
     color: var(--color-texto-muted);
     font-size: 1.1rem;
     text-align: center;
+    width: 100%;
 }
 
 
 @media screen and (max-width: 768px) {
-    #profile {
+    .profile {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
         padding: 1.5rem;
     }
 
-    #dates {
+    .dates {
         align-items: center;
 
         h3 {
